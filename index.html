@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Fisioterapia Avanzada | Bienestar y Movimiento</title>
+  <!-- Fuentes modernas y librería ligera para animaciones suaves -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f9fafc;
+      color: #1e2a3e;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    /* Contenedor principal */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header / Hero */
+    .hero {
+      background: linear-gradient(135deg, #D4E0F0 0%, #B7C9E2 100%);
+      border-radius: 0 0 3rem 3rem;
+      padding: 2.5rem 0 3rem 0;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
+    }
+
+    .hero-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .hero-text h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #0f2b3d;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-text p {
+      font-size: 1.2rem;
+      color: #1e4a6b;
+      font-weight: 500;
+      max-width: 500px;
+    }
+
+    .badge {
+      background: rgba(255,255,240,0.9);
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #1e6f5c;
+      margin-top: 1rem;
+      backdrop-filter: blur(2px);
+    }
+
+    .hero-img {
+      background: #ffffffcc;
+      border-radius: 2rem;
+      padding: 0.5rem;
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
+    }
+
+    .hero-img img {
+      max-width: 180px;
+      border-radius: 1.5rem;
+      display: block;
+    }
+
+    /* Navegación por pestañas (tabs) */
+    .tabs-nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+      margin: 2rem 0 2rem 0;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 0.75rem;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 1.05rem;
+      padding: 0.7rem 1.6rem;
+      border-radius: 60px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      color: #2c3e50;
+      background: #f1f5f9;
+    }
+
+    .tab-btn i {
+      margin-right: 8px;
+    }
+
+    .tab-btn.active {
+      background: #2c7da0;
+      color: white;
+      box-shadow: 0 8px 14px -8px rgba(44,125,160,0.4);
+    }
+
+    .tab-btn:hover:not(.active) {
+      background: #e2e8f0;
+      transform: translateY(-2px);
+    }
+
+    /* Contenido de pestañas */
+    .tab-pane {
+      display: none;
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    .tab-pane.active-pane {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+
+    /* Tarjetas, grids */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem;
+      margin: 1.5rem 0;
+    }
+
+    .service-card, .location-card {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 1.6rem;
+      box-shadow: 0 12px 20px -12px rgba(0,0,0,0.08);
+      transition: all 0.2s;
+      border: 1px solid #eef2f6;
+    }
+
+    .service-card:hover, .location-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -12px rgba(0,0,0,0.12);
+    }
+
+    .service-icon {
+      font-size: 2.4rem;
+      background: #d9e8f5;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 30px;
+      margin-bottom: 1.2rem;
+      color: #2c7da0;
+    }
+
+    .service-card h3 {
+      font-size: 1.35rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .location-card h3 i, .location-card p i {
+      margin-right: 8px;
+      color: #2c7da0;
+    }
+
+    .location-card p {
+      margin: 0.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .horario {
+      background: #f8fafc;
+      border-radius: 1rem;
+      padding: 1rem;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    /* Misión / Visión */
+    .mv-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin: 1rem 0 2rem;
+    }
+    .mv-card {
+      flex: 1;
+      background: white;
+      border-radius: 1.5rem;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 12px 20px -12px rgba(0,0,0,0.06);
+      border: 1px solid #ecf3f9;
+    }
+    .mv-card i {
+      font-size: 2.5rem;
+      background: #eef2ff;
+      padding: 1rem;
+      border-radius: 60px;
+      color: #2c7da0;
+      margin-bottom: 1rem;
+    }
+
+    /* Galería de fotos */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .gallery-item {
+      overflow: hidden;
+      border-radius: 1.5rem;
+      aspect-ratio: 1 / 0.9;
+      background: #eef2f6;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.05);
+      transition: 0.2s;
+      cursor: pointer;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.03);
+    }
+    /* modal para fotos */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.85);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      backdrop-filter: blur(5px);
+    }
+    .modal-content {
+      max-width: 85%;
+      max-height: 85%;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 25px 40px rgba(0,0,0,0.3);
+    }
+    .modal-content img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .close-modal {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      color: white;
+      font-size: 2.8rem;
+      font-weight: bold;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    /* Footer */
+    footer {
+      background: #0f2b3d;
+      color: #cbd5e1;
+      margin-top: 3rem;
+      padding: 2rem 0;
+      text-align: center;
+      border-radius: 2rem 2rem 0 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-text h1 { font-size: 2rem; }
+      .tab-btn { padding: 0.5rem 1rem; font-size: 0.9rem; }
+      .container { padding: 0 20px; }
+      .mv-container { flex-direction: column; }
+    }
+
+    /* Botón contacto flotante sutil */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #25D366;
+      color: white;
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      transition: 0.2s;
+      z-index: 99;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.05);
+      background: #128C7E;
+    }
+
+    /* Sección de dirección y mapa ilustrativo */
+    .map-placeholder {
+      background: #e2e8f0;
+      border-radius: 1rem;
+      padding: 1rem;
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #2c3e50;
+    }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Laura Méndez, Fisioterapeuta</h1>
+        <p>Especialista en dolor musculoesquelético y rehabilitación activa.</p>
+        <div class="badge"><i class="fas fa-star"></i> +12 años de experiencia | Reconocimiento local 2024</div>
+      </div>
+      <div class="hero-img">
+        <!-- Imagen ilustrativa de perfil / logo (puedes reemplazar la URL) -->
+        <img src="https://placehold.co/400x400/eef2f6/2c7da0?text=Fisio+Salud" alt="Fisioterapeuta">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <!-- Pestañas principales -->
+  <div class="tabs-nav">
+    <button class="tab-btn active" data-tab="mision-vision"><i class="fas fa-heartbeat"></i> Misión & Visión</button>
+    <button class="tab-btn" data-tab="servicios"><i class="fas fa-hand-holding-heart"></i> Servicios</button>
+    <button class="tab-btn" data-tab="ubicaciones"><i class="fas fa-map-marker-alt"></i> Locales</button>
+    <button class="tab-btn" data-tab="galeria"><i class="fas fa-camera-retro"></i> Galería</button>
+  </div>
+
+  <!-- Contenido de pestañas -->
+  <!-- 1. Misión y Visión -->
+  <div id="mision-vision" class="tab-pane active-pane">
+    <div class="mv-container">
+      <div class="mv-card">
+        <i class="fas fa-bullseye"></i>
+        <h2>Misión</h2>
+        <p style="margin-top: 1rem;">Restaurar la funcionalidad y calidad de vida de nuestros pacientes mediante tratamientos personalizados, basados en evidencia y calidez humana, promoviendo movimiento consciente y prevención de lesiones.</p>
+      </div>
+      <div class="mv-card">
+        <i class="fas fa-eye"></i>
+        <h2>Visión</h2>
+        <p style="margin-top: 1rem;">Ser referente regional en fisioterapia innovadora, integrando tecnología y terapias manuales para construir una comunidad activa y sin dolor, liderando con excelencia y empatía.</p>
+      </div>
+    </div>
+    <!-- Valores agregados -->
+    <div style="background:#EFF6FF; border-radius: 1.5rem; padding: 1.5rem; margin: 1rem 0;">
+      <h3><i class="fas fa-hand-sparkles"></i> Nuestros valores</h3>
+      <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem;">
+        <span style="background: white; padding: 0.3rem 1rem; border-radius: 40px;">Compromiso</span>
+        <span style="background: white; padding: 0.3rem 1rem; border-radius: 40px;">Ética profesional</span>
+        <span style="background: white; padding: 0.3rem 1rem; border-radius: 40px;">Innovación constante</span>
+        <span style="background: white; padding: 0.3rem 1rem; border-radius: 40px;">Trato personalizado</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Tipos de servicios -->
+  <div id="servicios" class="tab-pane">
+    <div class="card-grid">
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-hand-peace"></i></div>
+        <h3>Terapia Manual Ortopédica</h3>
+        <p>Movilizaciones articulares, masoterapia y liberación miofascial para aliviar contracturas y mejorar rango de movimiento.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-bolt"></i></div>
+        <h3>Punción Seca & Electrólisis</h3>
+        <p>Técnicas avanzadas para puntos gatillo y tendinopatías, acelerando recuperación de lesiones deportivas.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-spa"></i></div>
+        <h3>Rehabilitación Postural</h3>
+        <p>Reeducación de la postura, ejercicios correctivos y estabilidad core para espalda sana.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-baby-carriage"></i></div>
+        <h3>Fisioterapia Pediátrica</h3>
+        <p>Atención especializada para niños con trastornos del desarrollo o afecciones neuromotoras.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-running"></i></div>
+        <h3>Readaptación Deportiva</h3>
+        <p>Retorno seguro al deporte tras lesiones de rodilla, tobillo u hombro. Planes personalizados.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-home"></i></div>
+        <h3>Fisioterapia a Domicilio</h3>
+        <p>Atendemos en tu hogar para pacientes con movilidad reducida o postoperatorios.</p>
+      </div>
+    </div>
+    <div style="background:#eef2ff; border-radius:1rem; padding:1rem; text-align:center; margin-top: 1rem;">
+      <i class="fas fa-calendar-check"></i> <strong>¡Consulta planes de tratamiento o seguros médicos!</strong> Llámanos al +56 9 1234 5678
+    </div>
+  </div>
+
+  <!-- 3. Ubicación de locales -->
+  <div id="ubicaciones" class="tab-pane">
+    <div class="card-grid">
+      <div class="location-card">
+        <h3><i class="fas fa-building"></i> Centro Médico Especialidades</h3>
+        <p><i class="fas fa-location-dot"></i> Av. Los Conquistadores 1270, Providencia, Santiago</p>
+        <p><i class="fas fa-clock"></i> Lun - Vie: 09:00 - 20:00 | Sáb: 09:00 - 14:00</p>
+        <div class="horario"><i class="fas fa-phone-alt"></i> +56 2 2876 5400</div>
+        <div class="map-placeholder"><i class="fas fa-map"></i> Cerca del metro Los Leones | Estacionamiento disponible</div>
+      </div>
+      <div class="location-card">
+        <h3><i class="fas fa-clinic-medical"></i> Clínica Rehabilitación Activa</h3>
+        <p><i class="fas fa-location-dot"></i> Calle 5 Oriente 1545, Las Condes, Santiago</p>
+        <p><i class="fas fa-clock"></i> Lun - Mié - Vie: 08:30 - 19:30 | Mar & Jue: 12:00 - 21:00</p>
+        <div class="horario"><i class="fas fa-phone-alt"></i> +56 2 2998 7632</div>
+        <div class="map-placeholder"><i class="fas fa-bus"></i> Acceso por Costanera Norte | Terapias acuáticas disponibles</div>
+      </div>
+      <div class="location-card">
+        <h3><i class="fas fa-hand-holding-heart"></i> Consultorio Integrativo Ñuñoa</h3>
+        <p><i class="fas fa-location-dot"></i> Av. Irarrázaval 3921, Ñuñoa, Santiago</p>
+        <p><i class="fas fa-clock"></i> Lunes a Jueves: 10:00 - 19:00 | Viernes 09:00 - 15:00</p>
+        <div class="horario"><i class="fab fa-whatsapp"></i> WhatsApp: +56 9 8765 4321</div>
+        <div class="map-placeholder"><i class="fas fa-wheelchair"></i> Acceso universal | Atención con turno previo</div>
+      </div>
+    </div>
+    <p style="margin-top: 10px; background:#fff6e5; border-radius:20px; padding:12px; text-align:center;"><i class="fas fa-door-open"></i> Todos los locales cuentan con las medidas sanitarias y equipamiento especializado para tu seguridad.</p>
+  </div>
+
+  <!-- 4. Galería de fotos (imágenes placeholder pero fácil de remplazar) -->
+  <div id="galeria" class="tab-pane">
+    <p style="margin-bottom: 1rem; font-weight: 500;"><i class="fas fa-images"></i> Conoce nuestras instalaciones y momentos de atención profesional.</p>
+    <div class="gallery-grid" id="galleryContainer">
+      <!-- las imágenes se cargarán dinámicamente desde JS, para fácil mantenimiento -->
+    </div>
+    <p style="margin-top: 1rem; text-align: center; font-size: 0.85rem; color: #4b5563;">*Haz clic en cualquier imagen para ampliar</p>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <p><i class="fas fa-copyright"></i> 2025 Fisioterapia Laura Méndez | Reconocida localmente por excelencia y trato humano</p>
+    <p style="margin-top: 0.5rem; font-size: 0.9rem;"><i class="fas fa-envelope"></i> contacto@fisiolaura.cl | <i class="fab fa-instagram"></i> @fisioterapialmendez</p>
+  </div>
+</footer>
+
+<!-- Botón flotante WhatsApp -->
+<a href="https://wa.me/56912345678?text=Hola%20quisiera%20agendar%20una%20consulta%20de%20fisioterapia" class="whatsapp-float" target="_blank" rel="noopener">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- Modal para galería -->
+<div id="imageModal" class="modal">
+  <span class="close-modal">&times;</span>
+  <div class="modal-content">
+    <img id="modalImage" src="" alt="ampliación">
+  </div>
+</div>
+
+<script>
+  // ======================= PESTAÑAS (TABS) =======================
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const panes = document.querySelectorAll('.tab-pane');
+  
+  function activateTab(tabId) {
+    panes.forEach(pane => {
+      pane.classList.remove('active-pane');
+      if(pane.id === tabId) {
+        pane.classList.add('active-pane');
+      }
+    });
+    tabBtns.forEach(btn => {
+      btn.classList.remove('active');
+      if(btn.getAttribute('data-tab') === tabId) {
+        btn.classList.add('active');
+      }
+    });
+  }
+  
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const tabId = btn.getAttribute('data-tab');
+      if(tabId === 'mision-vision') activateTab('mision-vision');
+      else if(tabId === 'servicios') activateTab('servicios');
+      else if(tabId === 'ubicaciones') activateTab('ubicaciones');
+      else if(tabId === 'galeria') activateTab('galeria');
+    });
+  });
+
+  // ======================= GALERÍA DE FOTOS (fácil mantenimiento) =======================
+  // Array de objetos con URLs de imágenes y descripción (puedes reemplazar fácilmente)
+  // Para mantenerlo simple y visualmente atractivo usamos imágenes de Unsplash de temática salud/fisioterapia (placeholder libres)
+  // Todas las imágenes son de alta calidad gratuitas (demo), pero puedes cambiarlas sin afectar estructura.
+  const galleryImages = [
+    { url: 'https://images.pexels.com/photos/40568/medical-appointment-doctor-healthcare-40568.jpeg?auto=compress&cs=tinysrgb&w=600', alt: 'Consulta de fisioterapia' },
+    { url: 'https://images.pexels.com/photos/5327655/pexels-photo-5327655.jpeg?auto=compress&cs=tinysrgb&w=600', alt: 'Terapia manual con profesionales' },
+    { url: 'https://images.pexels.com/photos/4386464/pexels-photo-4386464.jpeg?auto=compress&cs=tinysrgb&w=600', alt: 'Gimnasio terapéutico' },
+    { url: 'https://images.pexels.com/photos/3836287/pexels-photo-3836287.jpeg?auto=compress&cs=tinysrgb&w=600', alt: 'Clínica moderna equipada' },
+    { url: 'https://images.pexels.com/photos/6646915/pexels-photo-6646915.jpeg?auto=compress&cs=tinysrgb&w=600', alt: 'Sesión de rehabilitación con ultrasonido' },
+    { url: 'https://images.pexels.com/photos/4526159/pexels-photo-4526159.jpeg?auto=compress&cs=tinysrgb&w=600', alt: 'Masaje descontracturante' },
+    { url: 'https://images.pexels.com/photos/7089018/pexels-photo-7089018.jpeg?auto=compress&cs=tinysrgb&w=600', alt: 'Ejercicios de equilibrio' },
+    { url: 'https://images.pexels.com/photos/3845549/pexels-photo-3845549.jpeg?auto=compress&cs=tinysrgb&w=600', alt: 'Zona de recepción acogedora' }
+  ];
+  
+  const galleryContainer = document.getElementById('galleryContainer');
+  function renderGallery() {
+    if (!galleryContainer) return;
+    galleryContainer.innerHTML = '';
+    galleryImages.forEach(img => {
+      const div = document.createElement('div');
+      div.className = 'gallery-item';
+      const imageElem = document.createElement('img');
+      imageElem.src = img.url;
+      imageElem.alt = img.alt;
+      imageElem.loading = 'lazy';
+      div.appendChild(imageElem);
+      // evento para abrir modal
+      div.addEventListener('click', () => {
+        openModal(img.url, img.alt);
+      });
+      galleryContainer.appendChild(div);
+    });
+  }
+  
+  // Modal logic
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('modalImage');
+  const closeModalBtn = document.querySelector('.close-modal');
+  
+  function openModal(imageUrl, altText) {
+    modal.style.display = 'flex';
+    modalImg.src = imageUrl;
+    modalImg.alt = altText;
+    document.body.style.overflow = 'hidden';
+  }
+  
+  function closeModal() {
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }
+  
+  closeModalBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.style.display === 'flex') closeModal();
+  });
+  
+  // Inicializar galería al cargar y también actualizar si se necesita después
+  renderGallery();
+  
+  // Además para mantener efecto sobre pestañas: cuando se seleccione galería recargar imágenes por si acaso (ya estan cargadas)
+  // opcional: scroll suave cuando se cambie pestaña y un pequeño aviso para cambiar fotos fácil.
+  console.log('Página lista - fácil mantenimiento: editar array galleryImages o reemplazar imágenes en ./assets (sustituir urls)');
+  
+  // Si quieres que al hacer clic en las pestañas, la galería esté lista, perfecto.
+  // Fácil mantenimiento: para actualizar las imágenes solo edita el array "galleryImages" en el código.
+  // Para cambiar logos, reemplazar la imagen en hero-img img src.
+</script>
+
+</body>
+</html>
