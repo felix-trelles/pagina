@@ -1,597 +1,1220 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-PE">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Fisioterapia Avanzada | Bienestar y Movimiento</title>
-  <!-- Fuentes modernas y librería ligera para animaciones suaves -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PhyReh | Centro de Fisioterapia y Rehabilitación en Piura</title>
+<meta name="description" content="PhyReh, centro de fisioterapia y rehabilitación en Piura con 10 años de experiencia. Ondas de choque, ultrasonido, magnetoterapia, electroterapia, pistola de percusión y terapia manual. 1ero de Junio Mz C Lote 11, altura del restaurante El Verídico.">
+<meta name="theme-color" content="#1E5442">
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #f9fafc;
-      color: #1e2a3e;
-      line-height: 1.5;
-      scroll-behavior: smooth;
-    }
+<!-- EDITAR: cuando tengas dominio, pon aquí la URL completa (https://tudominio.com/logo.png) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="PhyReh | Centro de Fisioterapia y Rehabilitación">
+<meta property="og:description" content="Terapia manual y agentes físicos en un mismo consultorio. Evaluación completa desde la primera cita.">
+<meta property="og:image" content="logo.png">
+<meta property="og:locale" content="es_PE">
 
-    /* Contenedor principal */
-    .container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
+<link rel="icon" href="logo-mark.png" type="image/png">
+<link rel="apple-touch-icon" href="logo-mark.png">
 
-    /* Header / Hero */
-    .hero {
-      background: linear-gradient(135deg, #D4E0F0 0%, #B7C9E2 100%);
-      border-radius: 0 0 3rem 3rem;
-      padding: 2.5rem 0 3rem 0;
-      margin-bottom: 2rem;
-      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
-    }
+<script>document.documentElement.className = 'js';</script>
 
-    .hero-content {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 2rem;
-    }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500..700&family=Instrument+Sans:wght@400..600&display=swap" rel="stylesheet">
 
-    .hero-text h1 {
-      font-size: 2.8rem;
-      font-weight: 700;
-      color: #0f2b3d;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.5rem;
-    }
+<style>
+/* ============================================================
+   1. TOKENS
+   Una sola fuente de verdad para color, curva y ritmo.
+   ============================================================ */
+:root{
+  --paper:      #F1F3EE;   /* fondo de página, blanco con matiz mineral */
+  --surface:    #FFFFFF;
+  --ink:        #13251E;   /* verde pino muy oscuro: es tinta, no negro */
+  --ink-2:      #4A5C53;
+  --moss:       #1E5442;   /* verde de marca */
+  --moss-deep:  #143A2E;
+  --moss-tint:  #E1EAE3;
+  --marigold:   #E8A33C;   /* único color de acción */
+  --line:       #DBE1D7;
 
-    .hero-text p {
-      font-size: 1.2rem;
-      color: #1e4a6b;
-      font-weight: 500;
-      max-width: 500px;
-    }
+  /* Curvas: las de CSS por defecto son demasiado débiles */
+  --ease-out:    cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 
-    .badge {
-      background: rgba(255,255,240,0.9);
-      display: inline-block;
-      padding: 0.4rem 1rem;
-      border-radius: 40px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: #1e6f5c;
-      margin-top: 1rem;
-      backdrop-filter: blur(2px);
-    }
+  /* Radios distintos según jerarquía, no uno solo para todo */
+  --r-chip: 999px;
+  --r-card: 16px;
+  --r-panel: 28px;
 
-    .hero-img {
-      background: #ffffffcc;
-      border-radius: 2rem;
-      padding: 0.5rem;
-      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
-    }
+  --gutter: clamp(20px, 4vw, 40px);
+  --shell: 1180px;
+}
 
-    .hero-img img {
-      max-width: 180px;
-      border-radius: 1.5rem;
-      display: block;
-    }
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; scroll-padding-top:96px; -webkit-text-size-adjust:100%; }
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Instrument Sans',system-ui,sans-serif;
+  font-size:clamp(1rem,0.97rem + 0.15vw,1.0625rem);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+img{ max-width:100%; display:block; }
+a{ color:inherit; }
 
-    /* Navegación por pestañas (tabs) */
-    .tabs-nav {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.75rem;
-      margin: 2rem 0 2rem 0;
-      border-bottom: 2px solid #e2e8f0;
-      padding-bottom: 0.75rem;
-    }
+h1,h2,h3{
+  font-family:'Fraunces',Georgia,serif;
+  font-variation-settings:'opsz' 96;
+  font-weight:600;
+  line-height:1.05;
+  letter-spacing:-0.018em;
+  margin:0;
+  text-wrap:balance;
+}
+h1{ font-size:clamp(2.6rem,1.6rem + 4.4vw,4.6rem); line-height:0.97; }
+h2{ font-size:clamp(1.9rem,1.4rem + 2.2vw,2.9rem); }
+h3{
+  font-family:'Instrument Sans',sans-serif;
+  font-size:1.15rem; font-weight:600; letter-spacing:-0.01em; line-height:1.3;
+}
+p{ margin:0; }
+.prose{ max-width:62ch; color:var(--ink-2); }
 
-    .tab-btn {
-      background: transparent;
-      border: none;
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
-      font-size: 1.05rem;
-      padding: 0.7rem 1.6rem;
-      border-radius: 60px;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      color: #2c3e50;
-      background: #f1f5f9;
-    }
+/* Foco visible y consistente en todo el sitio */
+:focus-visible{ outline:2.5px solid var(--moss); outline-offset:3px; border-radius:4px; }
 
-    .tab-btn i {
-      margin-right: 8px;
-    }
+.shell{ width:100%; max-width:var(--shell); margin-inline:auto; padding-inline:var(--gutter); }
+.skip{
+  position:absolute; left:12px; top:-60px; z-index:200;
+  background:var(--moss); color:#fff; padding:12px 18px; border-radius:10px;
+  transition:top 160ms var(--ease-out);
+}
+.skip:focus{ top:12px; }
 
-    .tab-btn.active {
-      background: #2c7da0;
-      color: white;
-      box-shadow: 0 8px 14px -8px rgba(44,125,160,0.4);
-    }
+.icon{ width:1.25em; height:1.25em; flex:none; stroke:currentColor; fill:none;
+  stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; }
 
-    .tab-btn:hover:not(.active) {
-      background: #e2e8f0;
-      transform: translateY(-2px);
-    }
+/* ============================================================
+   2. BOTONES
+   Feedback en el press, no en el release.
+   ============================================================ */
+.btn{
+  display:inline-flex; align-items:center; gap:.55rem;
+  font:inherit; font-weight:600; letter-spacing:-0.01em;
+  padding:.85rem 1.5rem; border-radius:var(--r-chip);
+  border:1.5px solid transparent; cursor:pointer; text-decoration:none;
+  transition:background-color 180ms ease, color 180ms ease,
+             border-color 180ms ease, transform 120ms var(--ease-out);
+}
+.btn:active{ transform:scale(0.97); }
+.btn-primary{ background:var(--moss); color:#fff; }
+.btn-ghost{ background:transparent; color:var(--ink); border-color:var(--line); }
+.btn-light{ background:var(--marigold); color:var(--ink); }
+@media (hover:hover) and (pointer:fine){
+  .btn-primary:hover{ background:var(--moss-deep); }
+  .btn-ghost:hover{ background:var(--moss-tint); border-color:var(--moss-tint); }
+  .btn-light:hover{ background:#F0B255; }
+}
 
-    /* Contenido de pestañas */
-    .tab-pane {
-      display: none;
-      animation: fadeIn 0.3s ease-out;
-    }
+/* ============================================================
+   3. CABECERA
+   ============================================================ */
+.header{
+  position:sticky; top:0; z-index:60;
+  background:rgba(241,243,238,.86);
+  background:color-mix(in srgb, var(--paper) 82%, transparent);
+  border-bottom:1px solid transparent;
+  transition:border-color 220ms ease, background-color 220ms ease;
+}
+@supports (backdrop-filter:blur(1px)){ .header{ backdrop-filter:blur(14px) saturate(1.4); } }
+.header.is-stuck{ border-bottom-color:var(--line); }
+.header-inner{ display:flex; align-items:center; gap:1.5rem; height:72px; }
 
-    .tab-pane.active-pane {
-      display: block;
-    }
+.brand{ display:flex; align-items:center; gap:.6rem; text-decoration:none; margin-right:auto; }
+.brand-mark{ width:40px; height:40px; object-fit:contain; }
+.footer-logo{ display:inline-block; }
+.footer-logo img{ width:min(190px,60%); height:auto; }
+.brand-name{ font-family:'Fraunces',serif; font-weight:600; font-size:1.15rem; letter-spacing:-0.02em; }
+.brand-role{ display:block; font-size:.72rem; font-weight:500; color:var(--ink-2); letter-spacing:.02em; margin-top:-2px; }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px);}
-      to { opacity: 1; transform: translateY(0);}
-    }
+.nav{ position:relative; display:flex; gap:.35rem; }
+.nav a{
+  position:relative; text-decoration:none; font-size:.95rem; font-weight:500;
+  padding:.4rem .7rem; color:var(--ink-2);
+  transition:color 180ms ease;
+}
+.nav a.is-current{ color:var(--ink); }
+@media (hover:hover) and (pointer:fine){ .nav a:hover{ color:var(--ink); } }
+/* Indicador único que se desplaza: una sola barra en vez de 6 colores interpolándose */
+.nav-ind{
+  position:absolute; bottom:-2px; left:0; height:2px; width:100px;
+  background:var(--moss); border-radius:2px; transform-origin:left center;
+  transform:translateX(0) scaleX(0); opacity:0;
+  transition:transform 260ms var(--ease-in-out), opacity 200ms ease;
+}
+.menu-btn{
+  display:none; background:transparent; border:1.5px solid var(--line);
+  border-radius:12px; padding:.5rem .8rem; font:inherit; font-weight:600; cursor:pointer;
+}
 
-    /* Tarjetas, grids */
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.8rem;
-      margin: 1.5rem 0;
-    }
+/* ============================================================
+   4. HÉROE — el goniómetro
+   ============================================================ */
+.hero{ padding:clamp(3rem,7vw,6rem) 0 clamp(3rem,6vw,5rem); overflow:clip; }
+.hero-grid{
+  display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
+  gap:clamp(2rem,5vw,4.5rem); align-items:center;
+}
+.eyebrow{
+  display:inline-flex; align-items:center; gap:.5rem;
+  font-size:.85rem; font-weight:600; color:var(--moss);
+  background:var(--moss-tint); padding:.4rem .9rem; border-radius:var(--r-chip);
+}
+.hero h1{ margin:1.4rem 0 0; }
+.hero h1 em{ font-style:normal; font-variation-settings:'opsz' 144,'wght' 500; }
+.hero-sub{ margin-top:1.4rem; font-size:1.12rem; max-width:44ch; color:var(--ink-2); }
+.hero-actions{ display:flex; flex-wrap:wrap; gap:.75rem; margin-top:2rem; }
+.hero-stats{
+  display:flex; flex-wrap:wrap; gap:.5rem 2rem; margin-top:2.5rem;
+  padding-top:1.5rem; border-top:1px solid var(--line);
+}
+.hero-stats div{ line-height:1.25; }
+.hero-stats b{ font-family:'Fraunces',serif; font-size:1.45rem; font-weight:600; display:block; }
+.hero-stats b.sm{ font-size:1.15rem; letter-spacing:-0.01em; }
+.hero-stats span{ font-size:.85rem; color:var(--ink-2); }
 
-    .service-card, .location-card {
-      background: white;
-      border-radius: 1.5rem;
-      padding: 1.6rem;
-      box-shadow: 0 12px 20px -12px rgba(0,0,0,0.08);
-      transition: all 0.2s;
-      border: 1px solid #eef2f6;
-    }
+/* El anillo comparte centro y radio con el arco superior de la foto:
+   la foto mide W de ancho y su borde superior es un semicírculo de radio W/2
+   centrado en (W/2, W/2). El SVG se dimensiona para que su círculo caiga ahí,
+   con un margen de 3,5% de W por fuera. Los porcentajes de left y margin-top
+   se resuelven contra el ancho, así que el centrado se mantiene a cualquier tamaño. */
+.figure{ position:relative; aspect-ratio:63/100; max-width:420px; margin-inline:auto; width:100%; }
+.figure svg{
+  position:absolute; left:-6%; top:0; margin-top:-6%;
+  width:112%; height:auto; aspect-ratio:1; overflow:visible;
+}
+.rom-ticks{
+  stroke:var(--moss); stroke-width:3.4; stroke-dasharray:1.6 22.84;
+  stroke-linecap:round; opacity:.45; fill:none;
+}
+.rom-arc{
+  stroke:var(--marigold); stroke-width:3.6; fill:none; stroke-linecap:round;
+  stroke-dasharray:538; stroke-dashoffset:538;
+  animation:sweep 1400ms var(--ease-out) 250ms forwards;
+}
+@keyframes sweep{ to{ stroke-dashoffset:0; } }
+.figure img{
+  position:relative; z-index:1; width:100%; height:100%;
+  object-fit:cover; object-position:50% 35%;
+  border-radius:999px 999px 20px 20px;
+  background:var(--moss-tint);
+}
+.rom-readout{
+  position:absolute; z-index:2; right:-5%; bottom:7%;
+  background:var(--surface); border:1px solid var(--line);
+  border-radius:var(--r-card); padding:.7rem 1rem; box-shadow:0 18px 30px -22px rgba(19,37,30,.5);
+}
+.rom-readout b{ font-family:'Fraunces',serif; font-size:1.6rem; font-weight:600; display:block; line-height:1; }
+.rom-readout span{ font-size:.75rem; color:var(--ink-2); }
 
-    .service-card:hover, .location-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 25px -12px rgba(0,0,0,0.12);
-    }
+/* ============================================================
+   5. SECCIONES
+   ============================================================ */
+section{ padding:clamp(3.5rem,7vw,6rem) 0; }
+.sec-head{ max-width:60ch; margin-bottom:clamp(2rem,4vw,3rem); }
+.sec-head p{ margin-top:1rem; color:var(--ink-2); }
+.kicker{
+  display:block; font-size:.85rem; font-weight:600; color:var(--moss);
+  margin-bottom:.9rem;
+}
 
-    .service-icon {
-      font-size: 2.4rem;
-      background: #d9e8f5;
-      width: 60px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 30px;
-      margin-bottom: 1.2rem;
-      color: #2c7da0;
-    }
+/* --- Síntomas: entrada en lenguaje de paciente --- */
+.symptoms{ background:var(--moss-tint); border-radius:var(--r-panel); padding:clamp(2rem,4vw,3.5rem); }
+.chip-row{ display:flex; flex-wrap:wrap; gap:.6rem; margin-top:.5rem; }
+.chip{
+  font:inherit; font-size:.97rem; font-weight:500; cursor:pointer;
+  background:var(--surface); border:1.5px solid transparent; color:var(--ink);
+  padding:.6rem 1.1rem; border-radius:var(--r-chip);
+  transition:border-color 180ms ease, transform 120ms var(--ease-out);
+}
+.chip:active{ transform:scale(0.97); }
+@media (hover:hover) and (pointer:fine){ .chip:hover{ border-color:var(--moss); } }
+.symptoms-foot{ margin-top:1.5rem; font-size:.92rem; color:var(--ink-2); }
 
-    .service-card h3 {
-      font-size: 1.35rem;
-      margin-bottom: 0.6rem;
-    }
+/* --- Servicios --- */
+.grid{ display:grid; gap:1.25rem; grid-template-columns:repeat(auto-fit,minmax(285px,1fr)); }
+.card{
+  background:var(--surface); border:1px solid var(--line); border-radius:var(--r-card);
+  padding:1.6rem;
+  transition:transform 220ms var(--ease-out), box-shadow 220ms var(--ease-out), border-color 300ms ease;
+}
+@media (hover:hover) and (pointer:fine){
+  .card:hover{ transform:translateY(-3px); box-shadow:0 22px 34px -26px rgba(19,37,30,.55); }
+}
+.card.is-flagged{ border-color:var(--marigold); box-shadow:0 0 0 3px rgba(232,163,60,.28); }
+.card .icon-well{
+  width:44px; height:44px; display:grid; place-items:center;
+  border-radius:12px; background:var(--moss-tint); color:var(--moss); margin-bottom:1.1rem;
+}
+.card .icon-well .icon{ width:22px; height:22px; }
+.card h3{ margin-bottom:.5rem; }
+.card p{ color:var(--ink-2); font-size:.97rem; }
+.card .for-whom{
+  display:block; margin-top:1rem; padding-top:.9rem; border-top:1px solid var(--line);
+  font-size:.85rem; color:var(--moss); font-weight:500;
+}
 
-    .location-card h3 i, .location-card p i {
-      margin-right: 8px;
-      color: #2c7da0;
-    }
+/* --- Proceso: sí es una secuencia, por eso va numerado --- */
+.steps{ display:grid; gap:1.5rem; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); counter-reset:s; }
+.step{ counter-increment:s; padding-top:1.5rem; border-top:2px solid var(--ink); }
+.step::before{
+  content:counter(s,decimal-leading-zero);
+  font-family:'Fraunces',serif; font-size:.95rem; font-weight:600; color:var(--moss);
+  display:block; margin-bottom:.8rem;
+}
+.step h3{ margin-bottom:.5rem; }
+.step p{ color:var(--ink-2); font-size:.97rem; }
+.step .dur{ font-size:.85rem; color:var(--moss); font-weight:600; }
 
-    .location-card p {
-      margin: 0.5rem 0;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
+/* --- Equipamiento: lista con filetes, no otra rejilla de tarjetas --- */
+.kit{ display:grid; grid-template-columns:repeat(auto-fit,minmax(330px,1fr));
+      column-gap:clamp(2rem,5vw,4.5rem); }
+.kit-item{
+  display:grid; grid-template-columns:auto 1fr; gap:1.2rem;
+  padding:1.6rem 0; border-top:1px solid var(--line);
+}
+.kit-item .well{
+  width:40px; height:40px; display:grid; place-items:center;
+  border-radius:50%; background:var(--moss); color:#fff;
+}
+.kit-item .well .icon{ width:20px; height:20px; }
+.kit-item h3{ margin-bottom:.4rem; }
+.kit-item p{ color:var(--ink-2); font-size:.96rem; }
+.kit-item p + p{ margin-top:.6rem; }
+.kit-use strong{ color:var(--ink); }
+.kit-item .kit-ideal{
+  margin-top:.9rem; padding-top:.7rem; border-top:1px dashed var(--line);
+  color:var(--moss); font-size:.9rem;
+}
+.kit-ideal strong{ font-weight:600; }
 
-    .horario {
-      background: #f8fafc;
-      border-radius: 1rem;
-      padding: 1rem;
-      margin-top: 1rem;
-      font-size: 0.9rem;
-    }
+/* --- Crónica: el perfil profesional --- */
+.story{ display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);
+        gap:clamp(2rem,5vw,4rem); align-items:start; }
+.story-body p{ margin-bottom:1.15rem; max-width:64ch; }
+.story-body p:first-of-type{ font-size:1.18rem; color:var(--ink); }
+.story-body p:first-of-type::first-letter{
+  font-family:'Fraunces',serif; font-size:3.4em; font-weight:600;
+  float:left; line-height:.82; padding:.06em .12em 0 0; color:var(--moss);
+}
+.pullquote{
+  border-left:3px solid var(--marigold); padding:.2rem 0 .2rem 1.4rem;
+  margin:2rem 0; font-family:'Fraunces',serif; font-size:1.5rem;
+  font-weight:600; line-height:1.25; letter-spacing:-0.015em;
+}
+.story-side{ background:var(--surface); border:1px solid var(--line);
+  border-radius:var(--r-card); padding:1.6rem; position:sticky; top:96px; }
+.story-side h3{ margin-bottom:1rem; }
+.story-side dl{ margin:0; display:grid; gap:.9rem; }
+.story-side dt{ font-size:.8rem; color:var(--moss); font-weight:600; }
+.story-side dd{ margin:0; font-size:.95rem; }
 
-    /* Misión / Visión */
-    .mv-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      margin: 1rem 0 2rem;
-    }
-    .mv-card {
-      flex: 1;
-      background: white;
-      border-radius: 1.5rem;
-      padding: 2rem;
-      text-align: center;
-      box-shadow: 0 12px 20px -12px rgba(0,0,0,0.06);
-      border: 1px solid #ecf3f9;
-    }
-    .mv-card i {
-      font-size: 2.5rem;
-      background: #eef2ff;
-      padding: 1rem;
-      border-radius: 60px;
-      color: #2c7da0;
-      margin-bottom: 1rem;
-    }
+/* --- Ubicación --- */
+.place{ display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:1.25rem; }
+.place-map{
+  grid-column:1/-1; border-radius:var(--r-card); overflow:hidden;
+  border:1px solid var(--line); background:var(--moss-tint); min-height:320px;
+}
+.place-map iframe{ display:block; width:100%; height:100%; min-height:320px; border:0; }
 
-    /* Galería de fotos */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 1.5rem;
-      margin: 2rem 0;
-    }
-    .gallery-item {
-      overflow: hidden;
-      border-radius: 1.5rem;
-      aspect-ratio: 1 / 0.9;
-      background: #eef2f6;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.05);
-      transition: 0.2s;
-      cursor: pointer;
-    }
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s ease;
-    }
-    .gallery-item:hover img {
-      transform: scale(1.03);
-    }
-    /* modal para fotos */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.85);
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      backdrop-filter: blur(5px);
-    }
-    .modal-content {
-      max-width: 85%;
-      max-height: 85%;
-      border-radius: 1.5rem;
-      overflow: hidden;
-      box-shadow: 0 25px 40px rgba(0,0,0,0.3);
-    }
-    .modal-content img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    .close-modal {
-      position: absolute;
-      top: 30px;
-      right: 40px;
-      color: white;
-      font-size: 2.8rem;
-      font-weight: bold;
-      cursor: pointer;
-      background: none;
-      border: none;
-    }
+/* --- Sedes --- */
+.sede h3{ font-family:'Fraunces',serif; font-size:1.3rem; font-weight:600; }
+.sede-meta{ list-style:none; margin:1.2rem 0 0; padding:0; display:grid; gap:.7rem; }
+.sede-meta li{ display:flex; gap:.7rem; align-items:flex-start; font-size:.94rem; color:var(--ink-2); }
+.sede-meta .icon{ color:var(--moss); margin-top:.2em; }
+.sede-meta a{ color:var(--ink); text-decoration-color:var(--line); text-underline-offset:3px; }
+.sede-note{
+  margin-top:1.2rem; padding:.7rem .9rem; background:var(--paper);
+  border-radius:10px; font-size:.85rem; color:var(--ink-2);
+}
 
-    /* Footer */
-    footer {
-      background: #0f2b3d;
-      color: #cbd5e1;
-      margin-top: 3rem;
-      padding: 2rem 0;
-      text-align: center;
-      border-radius: 2rem 2rem 0 0;
-    }
+/* --- Galería --- */
+.gallery{ display:grid; gap:1rem; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); }
+.shot{
+  padding:0; border:0; background:var(--moss-tint); cursor:zoom-in;
+  border-radius:var(--r-card); overflow:hidden; aspect-ratio:4/3;
+}
+.shot img{ width:100%; height:100%; object-fit:cover; transition:transform 280ms var(--ease-out); }
+@media (hover:hover) and (pointer:fine){ .shot:hover img{ transform:scale(1.04); } }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      .hero-text h1 { font-size: 2rem; }
-      .tab-btn { padding: 0.5rem 1rem; font-size: 0.9rem; }
-      .container { padding: 0 20px; }
-      .mv-container { flex-direction: column; }
-    }
+.lightbox{
+  border:0; padding:0; background:transparent; max-width:min(1020px,92vw); max-height:88vh;
+  opacity:0; transform:scale(.96);
+  transition:opacity 250ms var(--ease-out), transform 250ms var(--ease-out),
+             overlay 250ms allow-discrete, display 250ms allow-discrete;
+}
+.lightbox[open]{ opacity:1; transform:scale(1); }
+@starting-style{ .lightbox[open]{ opacity:0; transform:scale(.96); } }
+.lightbox::backdrop{
+  background:rgba(11,26,20,0);
+  transition:background-color 250ms var(--ease-out), overlay 250ms allow-discrete, display 250ms allow-discrete;
+}
+.lightbox[open]::backdrop{ background-color:rgba(11,26,20,.8); }
+@starting-style{ .lightbox[open]::backdrop{ background-color:rgba(11,26,20,0); } }
+@supports (backdrop-filter:blur(1px)){ .lightbox::backdrop{ backdrop-filter:blur(6px); } }
+.lightbox img{ width:100%; max-height:76vh; object-fit:contain; border-radius:var(--r-card); }
+.lightbox figcaption{ color:#EAEFE8; font-size:.9rem; margin-top:.9rem; text-align:center; }
+.lb-close{
+  position:absolute; top:-8px; right:-8px; width:40px; height:40px;
+  display:grid; place-items:center; border:0; border-radius:50%;
+  background:var(--surface); color:var(--ink); cursor:pointer;
+  transition:transform 120ms var(--ease-out);
+}
+.lb-close:active{ transform:scale(.94); }
+.lb-wrap{ position:relative; }
 
-    /* Botón contacto flotante sutil */
-    .whatsapp-float {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: #25D366;
-      color: white;
-      width: 55px;
-      height: 55px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-      transition: 0.2s;
-      z-index: 99;
-    }
-    .whatsapp-float:hover {
-      transform: scale(1.05);
-      background: #128C7E;
-    }
+/* --- Sobre / misión / visión --- */
+.about{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:clamp(2rem,5vw,4rem);
+}
+.pillar h3{ font-family:'Fraunces',serif; font-size:1.45rem; font-weight:600; margin-bottom:.8rem; }
+.pillar p{ color:var(--ink-2); }
+.pillar svg{ width:34px; height:34px; color:var(--moss); stroke:currentColor; fill:none;
+  stroke-width:1.6; stroke-linecap:round; margin-bottom:1rem; }
+.values{ list-style:none; margin:2.5rem 0 0; padding:0; display:flex; flex-wrap:wrap; gap:.6rem; }
+.values li{
+  display:flex; align-items:center; gap:.5rem;
+  border:1px solid var(--line); border-radius:var(--r-chip);
+  padding:.45rem 1rem; font-size:.92rem; background:var(--surface);
+}
+.values .icon{ width:15px; height:15px; color:var(--moss); stroke-width:2.2; }
 
-    /* Sección de dirección y mapa ilustrativo */
-    .map-placeholder {
-      background: #e2e8f0;
-      border-radius: 1rem;
-      padding: 1rem;
-      text-align: center;
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      color: #2c3e50;
-    }
-  </style>
+/* --- FAQ --- */
+.faq{ max-width:760px; border-top:1px solid var(--line); }
+.qa{ border-bottom:1px solid var(--line); }
+.qa summary{
+  list-style:none; cursor:pointer; padding:1.3rem 0;
+  display:flex; gap:1rem; align-items:center; justify-content:space-between;
+  font-weight:600; font-size:1.05rem;
+}
+.qa summary::-webkit-details-marker{ display:none; }
+.qa summary .icon{ color:var(--moss); transition:transform 220ms var(--ease-out); }
+.qa[open] summary .icon{ transform:rotate(180deg); }
+.qa-body{ display:grid; grid-template-rows:0fr; transition:grid-template-rows 240ms var(--ease-out); }
+.qa[open] .qa-body{ grid-template-rows:1fr; }
+.qa.is-closing .qa-body{ grid-template-rows:0fr; }
+.qa.is-closing summary .icon{ transform:rotate(0deg); }
+.qa-body > div{ overflow:hidden; }
+.qa-body p{ padding-bottom:1.4rem; color:var(--ink-2); max-width:62ch; }
+
+/* --- CTA final --- */
+.cta{
+  background:var(--moss-deep); color:#EDF2EC; border-radius:var(--r-panel);
+  padding:clamp(2.5rem,6vw,4.5rem); text-align:center;
+}
+.cta h2{ color:#fff; max-width:16ch; margin-inline:auto; }
+.cta p{ margin:1.2rem auto 2rem; max-width:50ch; color:#C2D2C6; }
+.cta .btn-ghost{ color:#EDF2EC; border-color:rgba(237,242,236,.3); }
+@media (hover:hover) and (pointer:fine){
+  .cta .btn-ghost:hover{ background:rgba(237,242,236,.12); border-color:rgba(237,242,236,.3); }
+}
+
+/* --- Footer --- */
+.footer{ padding:4rem 0 2.5rem; border-top:1px solid var(--line); margin-top:clamp(3rem,6vw,5rem); }
+.footer-grid{ display:grid; gap:2rem; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); }
+.footer h4{ font-size:.85rem; font-weight:600; margin:0 0 .9rem; color:var(--moss); }
+.footer ul{ list-style:none; margin:0; padding:0; display:grid; gap:.5rem; font-size:.92rem; color:var(--ink-2); }
+.footer a{ color:var(--ink-2); text-decoration-color:var(--line); text-underline-offset:3px; }
+.footer-base{
+  margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--line);
+  font-size:.82rem; color:var(--ink-2);
+  display:flex; flex-wrap:wrap; gap:.6rem 1.5rem; justify-content:space-between;
+}
+
+/* --- WhatsApp flotante --- */
+.wa{
+  position:fixed; right:20px; bottom:20px; z-index:70;
+  display:inline-flex; align-items:center; gap:.6rem;
+  background:#1FA855; color:#fff; text-decoration:none; font-weight:600; font-size:.95rem;
+  padding:.85rem 1.25rem; border-radius:var(--r-chip);
+  box-shadow:0 16px 30px -14px rgba(11,26,20,.5);
+  transition:transform 140ms var(--ease-out), background-color 180ms ease;
+}
+.wa:active{ transform:scale(.96); }
+@media (hover:hover) and (pointer:fine){ .wa:hover{ background:#178F47; } }
+.wa .icon{ width:20px; height:20px; }
+
+/* ============================================================
+   6. MOVIMIENTO DE ENTRADA
+   Un solo gesto orquestado en el héroe; en scroll, sólo las rejillas.
+   ============================================================ */
+.rise{ opacity:0; transform:translateY(14px); animation:rise 620ms var(--ease-out) forwards; }
+.rise-1{ animation-delay:60ms; } .rise-2{ animation-delay:130ms; }
+.rise-3{ animation-delay:200ms; } .rise-4{ animation-delay:280ms; }
+@keyframes rise{ to{ opacity:1; transform:translateY(0); } }
+
+.js .reveal > *{ opacity:0; transform:translateY(12px); }
+.js .reveal.is-in > *{
+  opacity:1; transform:translateY(0);
+  transition:opacity 520ms var(--ease-out), transform 520ms var(--ease-out);
+}
+.reveal.is-in > *:nth-child(2){ transition-delay:60ms; }
+.reveal.is-in > *:nth-child(3){ transition-delay:120ms; }
+.reveal.is-in > *:nth-child(4){ transition-delay:180ms; }
+.reveal.is-in > *:nth-child(5){ transition-delay:240ms; }
+.reveal.is-in > *:nth-child(6){ transition-delay:300ms; }
+
+/* ============================================================
+   7. RESPONSIVE
+   ============================================================ */
+@media (max-width:900px){
+  .hero-grid{ grid-template-columns:1fr; }
+  .figure{ order:-1; max-width:300px; }
+  .rom-readout{ right:0; }
+  .nav{
+    position:absolute; top:72px; left:var(--gutter); right:var(--gutter);
+    flex-direction:column; gap:0; background:var(--surface);
+    border:1px solid var(--line); border-radius:var(--r-card); padding:.5rem;
+    box-shadow:0 24px 40px -28px rgba(19,37,30,.6);
+    opacity:0; transform:translateY(-8px); visibility:hidden;
+    transition:opacity 200ms var(--ease-out), transform 200ms var(--ease-out), visibility 200ms;
+  }
+  .nav.is-open{ opacity:1; transform:translateY(0); visibility:visible; }
+  .nav a{ padding:.7rem .9rem; }
+  .nav-ind{ display:none; }
+  .menu-btn{ display:block; }
+  .header-cta{ display:none; }
+}
+@media (max-width:520px){
+  .hero-stats{ gap:1.1rem 1.6rem; }
+  .wa span{ display:none; }
+  .wa{ padding:.9rem; }
+}
+
+/* ============================================================
+   8. MOVIMIENTO REDUCIDO
+   Menos y más suave, no cero: se conserva lo que aporta comprensión.
+   ============================================================ */
+@media (prefers-reduced-motion:reduce){
+  html{ scroll-behavior:auto; }
+  .rom-arc{ animation:none; stroke-dashoffset:0; }
+  .rise{ opacity:1; transform:none; animation:none; }
+  .js .reveal > *{ opacity:1; transform:none; }
+  .card:hover{ transform:none; }
+  .shot:hover img{ transform:none; }
+  .qa-body{ transition-duration:1ms; }
+  .lightbox{ transition-property:opacity; }
+}
+</style>
 </head>
 <body>
 
-<div class="hero">
-  <div class="container">
-    <div class="hero-content">
-      <div class="hero-text">
-        <h1>Laura Méndez, Fisioterapeuta</h1>
-        <p>Especialista en dolor musculoesquelético y rehabilitación activa.</p>
-        <div class="badge"><i class="fas fa-star"></i> +12 años de experiencia | Reconocimiento local 2024</div>
+<a class="skip" href="#main">Saltar al contenido</a>
+
+<!-- Sprite de iconos: en línea, sin depender de Font Awesome -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <g id="i-joint"><circle cx="7" cy="7" r="3.2"/><circle cx="17" cy="17" r="3.2"/><path d="M9.3 9.3 14.7 14.7"/></g>
+    <g id="i-spine"><path d="M12 3v18"/><path d="M9 6.5h6M8.5 11h7M9 15.5h6M9.5 19.5h5"/></g>
+    <g id="i-child"><circle cx="8.5" cy="7.5" r="3"/><path d="M3.5 20c0-2.8 2.2-5 5-5s5 2.2 5 5"/><circle cx="17.5" cy="12" r="2.2"/><path d="M14.5 20c0-1.7 1.3-3 3-3s3 1.3 3 3"/></g>
+    <g id="i-run"><path d="M3 17.5C7 9 13 6 21 6"/><path d="M16 6h5v5"/></g>
+    <g id="i-home"><path d="M4 11 12 4l8 7"/><path d="M6 10v10h12V10"/><path d="M10 20v-5h4v5"/></g>
+    <g id="i-wave"><circle cx="12" cy="12" r="1"/><path d="M8.6 8.6a4.8 4.8 0 0 0 0 6.8"/><path d="M15.4 15.4a4.8 4.8 0 0 0 0-6.8"/><path d="M5.5 5.5a9 9 0 0 0 0 13"/><path d="M18.5 18.5a9 9 0 0 0 0-13"/></g>
+    <g id="i-ultra"><rect x="2.5" y="9" width="7" height="6" rx="2"/><path d="M12.5 8.5a5 5 0 0 1 0 7"/><path d="M16 6a9 9 0 0 1 0 12"/><path d="M19.5 3.5a13 13 0 0 1 0 17"/></g>
+    <g id="i-magnet"><path d="M5 20v-8a7 7 0 0 1 14 0v8"/><path d="M5 20h5v-8a2 2 0 0 1 4 0v8h5"/><path d="M5 16.5h5M14 16.5h5"/></g>
+    <g id="i-bolt"><path d="M13 2.5 4.8 14h6.4l-1 7.5L18.6 10H12l1-7.5z"/></g>
+    <g id="i-gun"><rect x="3.5" y="8" width="9" height="8" rx="2.5"/><path d="M12.5 12h4"/><path d="M19.5 9v6"/><path d="M17 10.5v3"/></g>
+    <g id="i-thermo"><path d="M12 3.5v10.5"/><circle cx="12" cy="17.5" r="3.4"/><path d="M9 6.5h3M9 10h3"/></g>
+    <g id="i-clock"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5.3l3.4 2"/></g>
+    <g id="i-pin"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></g>
+    <g id="i-phone"><path d="M6.4 3.5h3l1.5 4-2 1.5a12.4 12.4 0 0 0 6.1 6.1l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2C11.6 19.2 4.8 12.4 4.4 5.7a2 2 0 0 1 2-2.2z"/></g>
+    <g id="i-wa"><path d="M12 3.2A8.8 8.8 0 0 0 4.5 16.6L3.4 20.6l4.1-1.1A8.8 8.8 0 1 0 12 3.2z"/><path d="M9 8.6c.15-.35.3-.36.5-.37h.42c.14 0 .33 0 .5.4l.6 1.44c.09.18.03.34-.06.5l-.35.42c-.11.14-.23.29-.1.55.36.62 1.05 1.4 1.9 1.79.26.11.4.1.55-.06l.44-.5c.16-.2.3-.16.5-.09l1.3.68c.2.1.32.22.32.4 0 .7-.5 1.35-1.2 1.45-1.45.12-3.65-1.4-4.8-3.15-.5-.8-.75-1.75-.5-2.6z"/></g>
+    <g id="i-arrow"><path d="M5 12h13"/><path d="m12.5 6 6 6-6 6"/></g>
+    <g id="i-chev"><path d="m6 9.5 6 6 6-6"/></g>
+    <g id="i-close"><path d="M6 6l12 12M18 6 6 18"/></g>
+    <g id="i-check"><path d="m5 12.5 4.5 4.5L19 7"/></g>
+    <g id="i-target"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.5"/></g>
+    <g id="i-eye"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></g>
+    <g id="i-map"><path d="M9 4 3 6.5v13L9 17l6 2.5 6-2.5v-13L15 6.5 9 4z"/><path d="M9 4v13M15 6.5v13"/></g>
+  </defs>
+</svg>
+
+<!-- ============================ CABECERA ============================ -->
+<header class="header" id="header">
+  <div class="shell header-inner">
+    <a class="brand" href="#inicio">
+      <img class="brand-mark" src="logo-mark.png" alt="" width="256" height="256">
+      <span>
+        <span class="brand-name">PhyReh</span>
+        <span class="brand-role">Centro de Fisioterapia y Rehabilitación</span>
+      </span>
+    </a>
+
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav">Menú</button>
+
+    <nav class="nav" id="nav" aria-label="Secciones">
+      <span class="nav-ind" id="navInd" aria-hidden="true"></span>
+      <a href="#servicios">Servicios</a>
+      <a href="#equipos">Tecnología</a>
+      <a href="#proceso">Cómo funciona</a>
+      <a href="#sobre">El consultorio</a>
+      <a href="#galeria">Galería</a>
+      <a href="#ubicacion">Ubicación</a>
+    </nav>
+
+    <a class="btn btn-primary header-cta" href="#contacto">Reservar cita</a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============================ HÉROE ============================ -->
+<section class="hero" id="inicio">
+  <div class="shell hero-grid">
+    <div>
+      <span class="eyebrow rise">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>
+        10 años tratando dolor musculoesquelético
+      </span>
+      <h1 class="rise rise-1">Recupera tu movimiento, <em>grado a grado</em>.</h1>
+      <p class="hero-sub rise rise-2">
+        Fisioterapia para dolor de espalda, tendinitis y lesiones deportivas, con las manos
+        y con la tecnología que hace falta: ondas de choque, ultrasonido, magneto y
+        electroterapia en el mismo consultorio.
+      </p>
+      <div class="hero-actions rise rise-3">
+        <a class="btn btn-primary" href="https://wa.me/51979000480?text=Hola%2C%20quisiera%20reservar%20una%20cita%20de%20fisioterapia" target="_blank" rel="noopener">
+          Reservar por WhatsApp
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg>
+        </a>
+        <a class="btn btn-ghost" href="#equipos">Ver la tecnología</a>
       </div>
-      <div class="hero-img">
-        <!-- Imagen ilustrativa de perfil / logo (puedes reemplazar la URL) -->
-        <img src="https://placehold.co/400x400/eef2f6/2c7da0?text=Fisio+Salud" alt="Fisioterapeuta">
+      <div class="hero-stats rise rise-4">
+        <div><b>10</b><span>años de experiencia</span></div>
+        <div><b>6</b><span>tecnologías en consulta</span></div>
+        <div><b class="sm">979 000 480</b><span>WhatsApp directo</span></div>
+      </div>
+    </div>
+
+    <!-- El goniómetro: el instrumento con que un fisioterapeuta mide el avance -->
+    <div class="figure">
+      <svg viewBox="0 0 320 320" aria-hidden="true">
+        <path class="rom-ticks" d="M 8.3 186.7 A 154 154 0 1 1 311.7 186.7"/>
+        <path class="rom-arc"   d="M 8.3 186.7 A 154 154 0 1 1 311.7 186.7"/>
+      </svg>
+      <img src="doctora.jpg" alt="Especialista de PhyReh en el consultorio, junto a sus títulos y certificaciones"
+           width="200" height="1342" fetchpriority="high">
+    </div>
+  </div>
+</section>
+
+<!-- ============================ SÍNTOMAS ============================ -->
+<section id="dolor" style="padding-top:0">
+  <div class="shell">
+    <div class="symptoms">
+      <div class="sec-head" style="margin-bottom:1.5rem">
+        <h2>¿Con cuál de estas llegaste hasta aquí?</h2>
+        <p>Casi todo lo que tratamos empieza con una frase simple. Elige la tuya y te llevo al tratamiento que le corresponde.</p>
+      </div>
+      <div class="chip-row">
+        <button class="chip" data-goto="s-manual">Me duele la espalda baja</button>
+        <button class="chip" data-goto="s-manual">Tengo el cuello y los hombros duros</button>
+        <button class="chip" data-goto="s-ondas">Una molestia que no se va hace meses</button>
+        <button class="chip" data-goto="s-ondas">Me diagnosticaron tendinitis</button>
+        <button class="chip" data-goto="s-postural">Paso el día sentado y me duele</button>
+        <button class="chip" data-goto="s-deportiva">Me lesioné entrenando</button>
+        <button class="chip" data-goto="s-domicilio">Me operaron y no puedo salir de casa</button>
+        <button class="chip" data-goto="s-pediatrica">Mi hijo necesita terapia</button>
+      </div>
+      <p class="symptoms-foot">¿No aparece la tuya? Escribe al 979 000 480 y lo conversamos antes de que agendes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ SERVICIOS ============================ -->
+<section id="servicios">
+  <div class="shell">
+    <div class="sec-head">
+      <span class="kicker">Tratamientos</span>
+      <h2>Qué hacemos en la camilla y fuera de ella</h2>
+      <p>Todos los tratamientos parten de la misma evaluación. Lo que cambia es la herramienta que mejor le sirve a tu caso.</p>
+    </div>
+
+    <div class="grid reveal">
+      <article class="card" id="s-manual" tabindex="-1">
+        <div class="icon-well"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-joint"/></svg></div>
+        <h3>Terapia manual ortopédica</h3>
+        <p>Movilización de articulaciones, masaje profundo y liberación miofascial para soltar contracturas y devolverte el movimiento que perdiste.</p>
+        <span class="for-whom">Para contracturas, dolor cervical y lumbago</span>
+      </article>
+
+      <article class="card" id="s-ondas" tabindex="-1">
+        <div class="icon-well"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wave"/></svg></div>
+        <h3>Tratamiento de tendinitis</h3>
+        <p>Ondas de choque y ultrasonido sobre el tendón inflamado. Es la vía para los dolores tercos: hombro, codo de tenista, fascitis plantar y talón.</p>
+        <span class="for-whom">Para molestias de meses que no ceden</span>
+      </article>
+
+      <article class="card" id="s-postural" tabindex="-1">
+        <div class="icon-well"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-spine"/></svg></div>
+        <h3>Rehabilitación postural</h3>
+        <p>Reeducamos cómo te paras, te sientas y cargas peso, con ejercicios de estabilidad para que la espalda aguante tu día real.</p>
+        <span class="for-whom">Para trabajo de oficina y dolor recurrente</span>
+      </article>
+
+      <article class="card" id="s-pediatrica" tabindex="-1">
+        <div class="icon-well"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-child"/></svg></div>
+        <h3>Fisioterapia pediátrica</h3>
+        <p>Atención a niños con retrasos del desarrollo motor o afecciones neuromotoras, con los padres presentes en cada sesión.</p>
+        <span class="for-whom">Para lactantes, niños y adolescentes</span>
+      </article>
+
+      <article class="card" id="s-deportiva" tabindex="-1">
+        <div class="icon-well"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-run"/></svg></div>
+        <h3>Readaptación deportiva</h3>
+        <p>El puente entre "ya no me duele" y volver a competir: fuerza, potencia y gesto deportivo medidos antes de darte el alta.</p>
+        <span class="for-whom">Para rodilla, tobillo y hombro</span>
+      </article>
+
+      <article class="card" id="s-domicilio" tabindex="-1">
+        <div class="icon-well"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-home"/></svg></div>
+        <h3>Fisioterapia a domicilio</h3>
+        <p>Vamos a tu casa con el equipo necesario cuando salir todavía no es opción, sobre todo en postoperatorios y movilidad reducida.</p>
+        <span class="for-whom">Para postoperatorios y adultos mayores</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ TECNOLOGÍA ============================ -->
+<section id="equipos">
+  <div class="shell">
+    <div class="sec-head">
+      <span class="kicker">Nuestra tecnología</span>
+      <h2>Tecnología y agentes físicos</h2>
+      <p>Combinamos la terapia manual con equipamiento de vanguardia para acelerar tu recuperación, reducir el dolor y devolverte la movilidad. Ningún aparato reemplaza una buena evaluación, pero tener la herramienta correcta a mano acorta semanas de tratamiento.</p>
+    </div>
+
+    <div class="kit reveal">
+      <div class="kit-item">
+        <span class="well"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-ultra"/></svg></span>
+        <div>
+          <h3>Ultrasonido terapéutico</h3>
+          <p>Ondas sonoras de alta frecuencia que penetran en los tejidos profundos y generan un micromasaje con calor interno controlado.</p>
+          <p class="kit-use">Estimula la circulación sanguínea, reduce la inflamación en tendones y ligamentos, y acelera la reparación celular en lesiones musculares.</p>
+          <p class="kit-ideal"><strong>Ideal para</strong> tendinitis, esguinces, bursitis y contracturas profundas.</p>
+        </div>
+      </div>
+
+      <div class="kit-item">
+        <span class="well"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-magnet"/></svg></span>
+        <div>
+          <h3>Magnetoterapia</h3>
+          <p>Campos magnéticos de alta o baja frecuencia sobre la zona afectada, que estimulan los procesos de regeneración a nivel celular.</p>
+          <p class="kit-use">Promueve la fijación de calcio en los huesos, disminuye el edema y tiene un potente efecto analgésico y antiinflamatorio. No se siente ninguna molestia durante la sesión.</p>
+          <p class="kit-ideal"><strong>Ideal para</strong> fracturas en consolidación, artrosis, osteoporosis, edemas óseos y dolor articular crónico.</p>
+        </div>
+      </div>
+
+      <div class="kit-item">
+        <span class="well"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-bolt"/></svg></span>
+        <div>
+          <h3>Electroterapia</h3>
+          <p>Corrientes eléctricas terapéuticas (TENS, EMS o interferenciales) aplicadas mediante electrodos colocados sobre la piel.</p>
+          <p class="kit-use">Modula las señales de dolor que llegan al cerebro y estimula o reeduca las fibras musculares debilitadas tras una lesión o una cirugía.</p>
+          <p class="kit-ideal"><strong>Ideal para</strong> dolor agudo o crónico, fortalecimiento muscular postoperatorio y relajación de espasmos.</p>
+        </div>
+      </div>
+
+      <div class="kit-item">
+        <span class="well"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wave"/></svg></span>
+        <div>
+          <h3>Ondas de choque</h3>
+          <p>Ondas acústicas de alta energía que penetran en el tejido dañado y reactivan los procesos naturales de curación del organismo.</p>
+          <p class="kit-use">Rompe calcificaciones, desintegra el tejido cicatricial adherido, estimula la producción de colágeno y regenera tendones con inflamación crónica.</p>
+          <p class="kit-ideal"><strong>Ideal para</strong> espolón calcáneo, fascitis plantar, codo de tenista y tendinopatías que no ceden.</p>
+        </div>
+      </div>
+
+      <div class="kit-item">
+        <span class="well"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-gun"/></svg></span>
+        <div>
+          <h3>Pistola de percusión</h3>
+          <p>Masaje mecánico focalizado que aplica ráfagas rápidas y profundas de presión sobre el tejido muscular.</p>
+          <p class="kit-use">Aumenta el flujo sanguíneo de forma inmediata, desactiva los puntos gatillo (los nudos musculares), mejora la flexibilidad y acelera la recuperación tras el ejercicio.</p>
+          <p class="kit-ideal"><strong>Ideal para</strong> sobrecargas musculares, liberación miofascial, preparación deportiva y contracturas por estrés.</p>
+        </div>
+      </div>
+
+      <div class="kit-item">
+        <span class="well"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-thermo"/></svg></span>
+        <div>
+          <h3>Termoterapia y crioterapia</h3>
+          <p>Compresas calientes y frías: los agentes térmicos que regulan la respuesta inflamatoria y la circulación en cada etapa de la lesión.</p>
+          <p class="kit-use"><strong>Calor.</strong> Calor húmedo penetrante que dilata los vasos sanguíneos, relaja la musculatura y reduce la rigidez articular. Indicado en dolores crónicos y rigidez.</p>
+          <p class="kit-use"><strong>Frío.</strong> Produce vasoconstricción local para adormecer la zona, contener la inflamación y reducir la formación de hematomas. Indicado en lesiones agudas, durante las primeras 48 a 72 horas.</p>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</section>
 
-<div class="container">
-  <!-- Pestañas principales -->
-  <div class="tabs-nav">
-    <button class="tab-btn active" data-tab="mision-vision"><i class="fas fa-heartbeat"></i> Misión & Visión</button>
-    <button class="tab-btn" data-tab="servicios"><i class="fas fa-hand-holding-heart"></i> Servicios</button>
-    <button class="tab-btn" data-tab="ubicaciones"><i class="fas fa-map-marker-alt"></i> Locales</button>
-    <button class="tab-btn" data-tab="galeria"><i class="fas fa-camera-retro"></i> Galería</button>
-  </div>
 
-  <!-- Contenido de pestañas -->
-  <!-- 1. Misión y Visión -->
-  <div id="mision-vision" class="tab-pane active-pane">
-    <div class="mv-container">
-      <div class="mv-card">
-        <i class="fas fa-bullseye"></i>
-        <h2>Misión</h2>
-        <p style="margin-top: 1rem;">Restaurar la funcionalidad y calidad de vida de nuestros pacientes mediante tratamientos personalizados, basados en evidencia y calidez humana, promoviendo movimiento consciente y prevención de lesiones.</p>
-      </div>
-      <div class="mv-card">
-        <i class="fas fa-eye"></i>
-        <h2>Visión</h2>
-        <p style="margin-top: 1rem;">Ser referente regional en fisioterapia innovadora, integrando tecnología y terapias manuales para construir una comunidad activa y sin dolor, liderando con excelencia y empatía.</p>
-      </div>
+<!-- ============================ PROCESO ============================ -->
+<section id="proceso">
+  <div class="shell">
+    <div class="sec-head">
+      <span class="kicker">Cómo funciona</span>
+      <h2>Tres etapas, y sabes en cuál estás</h2>
+      <p>Nada de sesiones indefinidas. Desde el primer día tienes una cantidad estimada y un criterio claro de alta.</p>
     </div>
-    <!-- Valores agregados -->
-    <div style="background:#EFF6FF; border-radius: 1.5rem; padding: 1.5rem; margin: 1rem 0;">
-      <h3><i class="fas fa-hand-sparkles"></i> Nuestros valores</h3>
-      <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem;">
-        <span style="background: white; padding: 0.3rem 1rem; border-radius: 40px;">Compromiso</span>
-        <span style="background: white; padding: 0.3rem 1rem; border-radius: 40px;">Ética profesional</span>
-        <span style="background: white; padding: 0.3rem 1rem; border-radius: 40px;">Innovación constante</span>
-        <span style="background: white; padding: 0.3rem 1rem; border-radius: 40px;">Trato personalizado</span>
+    <div class="steps reveal">
+      <div class="step">
+        <span class="dur">45 minutos</span>
+        <h3>Evaluación</h3>
+        <p>Revisamos tu historia, medimos movilidad y fuerza, y buscamos el origen del dolor, no sólo el lugar donde lo sientes. Te vas sabiendo qué tienes.</p>
+      </div>
+      <div class="step">
+        <span class="dur">4 a 8 sesiones</span>
+        <h3>Tratamiento</h3>
+        <p>Terapia manual para bajar el dolor y ejercicio progresivo para que el resultado se quede. Ajustamos el plan cada dos semanas según cómo respondes.</p>
+      </div>
+      <div class="step">
+        <span class="dur">Control a los 3 meses</span>
+        <h3>Alta y prevención</h3>
+        <p>Te vas con una rutina corta que ya practicaste conmigo, y volvemos a medir para confirmar que el avance se mantuvo.</p>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- 2. Tipos de servicios -->
-  <div id="servicios" class="tab-pane">
-    <div class="card-grid">
-      <div class="service-card">
-        <div class="service-icon"><i class="fas fa-hand-peace"></i></div>
-        <h3>Terapia Manual Ortopédica</h3>
-        <p>Movilizaciones articulares, masoterapia y liberación miofascial para aliviar contracturas y mejorar rango de movimiento.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon"><i class="fas fa-bolt"></i></div>
-        <h3>Punción Seca & Electrólisis</h3>
-        <p>Técnicas avanzadas para puntos gatillo y tendinopatías, acelerando recuperación de lesiones deportivas.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon"><i class="fas fa-spa"></i></div>
-        <h3>Rehabilitación Postural</h3>
-        <p>Reeducación de la postura, ejercicios correctivos y estabilidad core para espalda sana.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon"><i class="fas fa-baby-carriage"></i></div>
-        <h3>Fisioterapia Pediátrica</h3>
-        <p>Atención especializada para niños con trastornos del desarrollo o afecciones neuromotoras.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon"><i class="fas fa-running"></i></div>
-        <h3>Readaptación Deportiva</h3>
-        <p>Retorno seguro al deporte tras lesiones de rodilla, tobillo u hombro. Planes personalizados.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon"><i class="fas fa-home"></i></div>
-        <h3>Fisioterapia a Domicilio</h3>
-        <p>Atendemos en tu hogar para pacientes con movilidad reducida o postoperatorios.</p>
-      </div>
+<!-- ============================ UBICACIÓN ============================ -->
+<section id="ubicacion">
+  <div class="shell">
+    <div class="sec-head">
+      <span class="kicker">Cómo llegar</span>
+      <h2>A la altura del restaurante El Verídico</h2>
+      <p>Si vienes por primera vez, esa es la referencia que no falla. El consultorio queda en la misma cuadra.</p>
     </div>
-    <div style="background:#eef2ff; border-radius:1rem; padding:1rem; text-align:center; margin-top: 1rem;">
-      <i class="fas fa-calendar-check"></i> <strong>¡Consulta planes de tratamiento o seguros médicos!</strong> Llámanos al +56 9 1234 5678
+
+    <div class="place reveal">
+      <article class="card sede">
+        <h3>La dirección</h3>
+        <ul class="sede-meta">
+          <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pin"/></svg>
+              1ero de Junio, Mz. C Lote 11<br>Piura</li>
+          <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-map"/></svg>
+              <a href="https://maps.app.goo.gl/e4m3xeoF2xDkKFgm9" target="_blank" rel="noopener">Abrir en Google Maps</a></li>
+        </ul>
+        <p class="sede-note">Referencia: a la altura del restaurante <strong>El Verídico</strong>.</p>
+      </article>
+
+      <article class="card sede">
+        <h3>Horario y citas</h3>
+        <!-- EDITAR: ajusta tus horarios reales -->
+        <ul class="sede-meta">
+          <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-clock"/></svg>
+              Lunes a sábado<br>8:00–13:00 y 15:00–20:00</li>
+          <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg>
+              <a href="https://wa.me/51979000480?text=Hola%2C%20quisiera%20reservar%20una%20cita%20de%20fisioterapia" target="_blank" rel="noopener">WhatsApp 979 000 480</a></li>
+          <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"/></svg>
+              <a href="tel:+51979000480">Llamar al 979 000 480</a></li>
+        </ul>
+        <p class="sede-note">Atención con cita previa. También vamos a domicilio dentro de la ciudad.</p>
+      </article>
+
+      <!-- EDITAR: para que el pin quede exacto, entra a tu ficha de Google Maps,
+           pulsa Compartir → Insertar un mapa y pega aquí ese <iframe>. -->
+      <div class="place-map">
+        <iframe
+          src="https://www.google.com/maps?q=1ero%20de%20Junio%20Mz%20C%20Lote%2011%20Piura&output=embed"
+          title="Mapa de la ubicación del consultorio"
+          loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
     </div>
   </div>
+</section>
 
-  <!-- 3. Ubicación de locales -->
-  <div id="ubicaciones" class="tab-pane">
-    <div class="card-grid">
-      <div class="location-card">
-        <h3><i class="fas fa-building"></i> Centro Médico Especialidades</h3>
-        <p><i class="fas fa-location-dot"></i> Av. Los Conquistadores 1270, Providencia, Santiago</p>
-        <p><i class="fas fa-clock"></i> Lun - Vie: 09:00 - 20:00 | Sáb: 09:00 - 14:00</p>
-        <div class="horario"><i class="fas fa-phone-alt"></i> +56 2 2876 5400</div>
-        <div class="map-placeholder"><i class="fas fa-map"></i> Cerca del metro Los Leones | Estacionamiento disponible</div>
+<!-- ============================ GALERÍA ============================ -->
+<section id="galeria">
+  <div class="shell">
+    <div class="gallery reveal" id="gallery"></div>
+  </div>
+</section>
+
+<!-- ============================ SOBRE ============================ -->
+<section id="sobre">
+  <div class="shell">
+    <div class="sec-head">
+      <span class="kicker">El consultorio</span>
+      <h2>Diez años aprendiendo a leer el dolor ajeno</h2>
+    </div>
+
+    <div class="story">
+      <div class="story-body">
+        <p>El paciente entra encogido, con la mano puesta sobre el hombro, y repite la frase que aquí se escucha casi todos los días: me duele hace meses y ya probé de todo. Lo primero que pasa entonces no es un aparato encendido ni una camilla. Es una pregunta: ¿desde cuándo, y qué estabas haciendo cuando empezó?</p>
+
+        <p>Han pasado diez años desde que PhyReh empezó a atender a la altura del restaurante El Verídico. En ese tiempo por la camilla han pasado albañiles con la espalda vencida, choferes con el cuello endurecido de tanto volante, futbolistas de cancha de barrio con la rodilla hinchada y señoras que volvieron a colgar la ropa sin quejarse. La historia clínica cambia en cada caso. El método, no.</p>
+
+        <p>El método empieza midiendo. Cuánto sube el brazo, cuánto gira el cuello, en qué punto exacto se corta el movimiento y dónde aparece la molestia. Solo después de eso se decide la herramienta, porque tratar sin medir es apostar.</p>
+
+        <div class="pullquote">El dolor no se aguanta. Se mide, se explica y se trata.</div>
+
+        <p>Las herramientas, además, están todas en la misma sala. El ultrasonido llega al tejido profundo donde la mano ya no alcanza. La magnetoterapia baja la inflamación que se quedó a vivir en la articulación. La electroterapia despierta al músculo que se durmió después de la lesión. Las ondas de choque se reservan para el tendón que lleva medio año sin ceder. La pistola de percusión suelta en minutos la contractura que se resiste. Y las compresas, frías o calientes según el caso, siguen siendo después de todos estos años de lo más eficaz del arsenal.</p>
+
+        <p>La mayoría de los pacientes se va de la primera sesión notando la diferencia: el brazo sube un poco más, el cuello gira sin ese tirón, el dolor baja de intensidad. No es magia ni es una promesa de cura. Es lo que ocurre cuando se trata el origen del problema y no solamente el punto donde duele. Lo que sí toma tiempo es que ese alivio se quede, y para eso están las sesiones que siguen y los ejercicios que cada paciente se lleva a casa.</p>
+
+        <p>En la pared del consultorio cuelgan los títulos y las certificaciones, pero la herramienta principal no está enchufada ni enmarcada: aquí nadie se baja de la camilla sin entender qué tiene y por qué.</p>
       </div>
-      <div class="location-card">
-        <h3><i class="fas fa-clinic-medical"></i> Clínica Rehabilitación Activa</h3>
-        <p><i class="fas fa-location-dot"></i> Calle 5 Oriente 1545, Las Condes, Santiago</p>
-        <p><i class="fas fa-clock"></i> Lun - Mié - Vie: 08:30 - 19:30 | Mar & Jue: 12:00 - 21:00</p>
-        <div class="horario"><i class="fas fa-phone-alt"></i> +56 2 2998 7632</div>
-        <div class="map-placeholder"><i class="fas fa-bus"></i> Acceso por Costanera Norte | Terapias acuáticas disponibles</div>
+
+      <aside class="story-side">
+        <h3>La ficha</h3>
+        <dl>
+          <dt>Experiencia</dt>
+          <dd>10 años en fisioterapia y rehabilitación</dd>
+          <dt>Se trata aquí</dt>
+          <dd>Dolor de columna, tendinitis, lesiones deportivas, postoperatorios y adulto mayor</dd>
+          <dt>Equipamiento</dt>
+          <dd>Ultrasonido, magnetoterapia, electroterapia, ondas de choque, pistola de percusión y compresas frías y calientes</dd>
+          <dt>Atención</dt>
+          <dd>En consultorio y a domicilio, con cita previa</dd>
+          <dt>Citas</dt>
+          <dd><a href="https://wa.me/51979000480" target="_blank" rel="noopener">WhatsApp 979 000 480</a></dd>
+        </dl>
+      </aside>
+    </div>
+
+    <div class="about" style="margin-top:clamp(2.5rem,5vw,4rem)">
+      <div class="pillar">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-target"/></svg>
+        <h3>Misión</h3>
+        <p>Devolver funcionalidad y calidad de vida con tratamientos personalizados, basados en evidencia y con calidez humana, promoviendo el movimiento consciente y la prevención de lesiones.</p>
       </div>
-      <div class="location-card">
-        <h3><i class="fas fa-hand-holding-heart"></i> Consultorio Integrativo Ñuñoa</h3>
-        <p><i class="fas fa-location-dot"></i> Av. Irarrázaval 3921, Ñuñoa, Santiago</p>
-        <p><i class="fas fa-clock"></i> Lunes a Jueves: 10:00 - 19:00 | Viernes 09:00 - 15:00</p>
-        <div class="horario"><i class="fab fa-whatsapp"></i> WhatsApp: +56 9 8765 4321</div>
-        <div class="map-placeholder"><i class="fas fa-wheelchair"></i> Acceso universal | Atención con turno previo</div>
+      <div class="pillar">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-eye"/></svg>
+        <h3>Visión</h3>
+        <p>Ser un referente regional en fisioterapia, integrando tecnología y terapia manual para construir una comunidad activa y sin dolor, liderando con excelencia y empatía.</p>
       </div>
     </div>
-    <p style="margin-top: 10px; background:#fff6e5; border-radius:20px; padding:12px; text-align:center;"><i class="fas fa-door-open"></i> Todos los locales cuentan con las medidas sanitarias y equipamiento especializado para tu seguridad.</p>
-  </div>
 
-  <!-- 4. Galería de fotos (imágenes placeholder pero fácil de remplazar) -->
-  <div id="galeria" class="tab-pane">
-    <p style="margin-bottom: 1rem; font-weight: 500;"><i class="fas fa-images"></i> Conoce nuestras instalaciones y momentos de atención profesional.</p>
-    <div class="gallery-grid" id="galleryContainer">
-      <!-- las imágenes se cargarán dinámicamente desde JS, para fácil mantenimiento -->
+    <ul class="values">
+      <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>Compromiso</li>
+      <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>Ética profesional</li>
+      <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>Formación continua</li>
+      <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>Trato personalizado</li>
+      <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>Explicar antes de tratar</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================ PREGUNTAS ============================ -->
+<section id="preguntas">
+  <div class="shell">
+    <div class="sec-head">
+      <span class="kicker">Preguntas frecuentes</span>
+      <h2>Lo que casi todos preguntan antes de venir</h2>
     </div>
-    <p style="margin-top: 1rem; text-align: center; font-size: 0.85rem; color: #4b5563;">*Haz clic en cualquier imagen para ampliar</p>
-  </div>
-</div>
 
-<footer>
-  <div class="container">
-    <p><i class="fas fa-copyright"></i> 2025 Fisioterapia Laura Méndez | Reconocida localmente por excelencia y trato humano</p>
-    <p style="margin-top: 0.5rem; font-size: 0.9rem;"><i class="fas fa-envelope"></i> contacto@fisiolaura.cl | <i class="fab fa-instagram"></i> @fisioterapialmendez</p>
+    <div class="faq">
+      <details class="qa">
+        <summary>¿Necesito una orden médica para atenderme?
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+        <div class="qa-body"><div><p>No para la evaluación inicial. Si tu seguro exige orden para reembolsar las sesiones, te digo exactamente qué pedirle a tu médico.</p></div></div>
+      </details>
+      <details class="qa">
+        <summary>¿Cuánto dura cada sesión?
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+        <div class="qa-body"><div><p>La primera dura 45 minutos porque incluye la evaluación completa. Las siguientes son de 40 minutos, siempre uno a uno.</p></div></div>
+      </details>
+      <details class="qa">
+        <summary>¿El tratamiento duele?
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+        <div class="qa-body"><div><p>La electroterapia se siente como un hormigueo. Las ondas de choque sí molestan mientras se aplican y pueden dejar la zona sensible un día. Nunca se trabaja sobre dolor intenso: acordamos un límite antes de empezar y se respeta.</p></div></div>
+      </details>
+      <details class="qa">
+        <summary>¿De verdad voy a mejorar desde la primera sesión?
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+        <div class="qa-body"><div><p>La mayoría de pacientes sale notando un cambio concreto: más rango de movimiento y menos intensidad de dolor. Eso no equivale a estar curado. El alivio inicial es la señal de que el tratamiento va por buen camino; consolidarlo toma las sesiones siguientes.</p></div></div>
+      </details>
+      <details class="qa">
+        <summary>¿Cuántas sesiones voy a necesitar?
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+        <div class="qa-body"><div><p>Lo más común es entre 4 y 8. Al terminar la evaluación recibes un número estimado; si a la tercera sesión no hay cambios medibles, se replantea el tratamiento o se te deriva.</p></div></div>
+      </details>
+      <details class="qa">
+        <summary>¿Atienden a domicilio?
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+        <div class="qa-body"><div><p>Sí, dentro de la ciudad, con equipo portátil. Es la opción habitual para postoperatorios, adultos mayores y pacientes que todavía no pueden trasladarse. Se coordina por WhatsApp según disponibilidad.</p></div></div>
+      </details>
+      <details class="qa">
+        <summary>¿Qué llevo a la primera cita?
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+        <div class="qa-body"><div><p>Ropa cómoda que te permita moverte y cualquier examen o informe que tengas a la mano: radiografías, resonancias, ecografías o el informe de tu operación.</p></div></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CTA ============================ -->
+<section id="contacto">
+  <div class="shell">
+    <div class="cta">
+      <h2>Empecemos por saber qué tienes</h2>
+      <p>Escribe, cuéntame qué te duele y desde cuándo, y agendamos la evaluación. Sales de la primera cita sabiendo qué tienes y cuántas sesiones necesitas.</p>
+      <div class="hero-actions" style="justify-content:center">
+        <a class="btn btn-light" href="https://wa.me/51979000480?text=Hola%2C%20quisiera%20reservar%20una%20evaluaci%C3%B3n%20de%20fisioterapia" target="_blank" rel="noopener">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg>
+          Escribir al 979 000 480
+        </a>
+        <a class="btn btn-ghost" href="tel:+51979000480">Llamar ahora</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="footer">
+  <div class="shell">
+    <div class="footer-grid">
+      <div>
+        <a class="footer-logo" href="#inicio" aria-label="PhyReh, inicio">
+          <img src="logo.png" alt="PhyReh, Centro de Fisioterapia y Rehabilitación" width="520" height="449">
+        </a>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="https://wa.me/51979000480" target="_blank" rel="noopener">WhatsApp 979 000 480</a></li>
+          <li><a href="tel:+51979000480">Llamar al 979 000 480</a></li>
+          <!-- EDITAR: agrega aquí tu correo y tu Instagram cuando los tengas -->
+        </ul>
+      </div>
+      <div>
+        <h4>Ubicación</h4>
+        <ul>
+          <li>1ero de Junio, Mz. C Lote 11</li>
+          <li>Altura del restaurante El Verídico</li>
+          <li><a href="https://maps.app.goo.gl/e4m3xeoF2xDkKFgm9" target="_blank" rel="noopener">Abrir en Google Maps</a></li>
+          <li>También atención a domicilio</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Tratamientos</h4>
+        <ul>
+          <li><a href="#s-manual">Terapia manual</a></li>
+          <li><a href="#s-ondas">Tendinitis y ondas de choque</a></li>
+          <li><a href="#s-deportiva">Readaptación deportiva</a></li>
+          <li><a href="#s-pediatrica">Fisioterapia pediátrica</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-base">
+      <span>© <span id="year">2026</span> PhyReh · Centro de Fisioterapia y Rehabilitación</span>
+      <span>La información de este sitio no reemplaza una consulta profesional.</span>
+    </div>
   </div>
 </footer>
 
-<!-- Botón flotante WhatsApp -->
-<a href="https://wa.me/56912345678?text=Hola%20quisiera%20agendar%20una%20consulta%20de%20fisioterapia" class="whatsapp-float" target="_blank" rel="noopener">
-  <i class="fab fa-whatsapp"></i>
+<a class="wa" href="https://wa.me/51979000480?text=Hola%2C%20quisiera%20reservar%20una%20hora%20de%20fisioterapia"
+   target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg>
+  <span>WhatsApp</span>
 </a>
 
-<!-- Modal para galería -->
-<div id="imageModal" class="modal">
-  <span class="close-modal">&times;</span>
-  <div class="modal-content">
-    <img id="modalImage" src="" alt="ampliación">
+<dialog class="lightbox" id="lightbox" aria-label="Imagen ampliada">
+  <div class="lb-wrap">
+    <button class="lb-close" id="lbClose" aria-label="Cerrar">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-close"/></svg>
+    </button>
+    <figure style="margin:0">
+      <img id="lbImg" src="" alt="">
+      <figcaption id="lbCap"></figcaption>
+    </figure>
   </div>
-</div>
+</dialog>
+
+<!-- Datos estructurados: ayuda a que Google muestre horarios y dirección -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Physiotherapy",
+  "name":"PhyReh",
+  "alternateName":"PhyReh Centro de Fisioterapia y Rehabilitación",
+  "logo":"logo.png",
+  "image":"doctora.jpg",
+  "description":"Centro de fisioterapia y rehabilitación con 10 años de experiencia. Ondas de choque, ultrasonido, magnetoterapia, electroterapia, pistola de percusión y terapia manual.",
+  "telephone":"+51979000480",
+  "hasMap":"https://maps.app.goo.gl/e4m3xeoF2xDkKFgm9",
+  "address":{
+    "@type":"PostalAddress",
+    "streetAddress":"1ero de Junio Mz. C Lote 11",
+    "addressLocality":"Piura",
+    "addressCountry":"PE"
+  },
+  "availableService":[
+    {"@type":"MedicalTherapy","name":"Terapia manual ortopédica"},
+    {"@type":"MedicalTherapy","name":"Ondas de choque para tendinitis"},
+    {"@type":"MedicalTherapy","name":"Ultrasonido terapéutico"},
+    {"@type":"MedicalTherapy","name":"Magnetoterapia"},
+    {"@type":"MedicalTherapy","name":"Electroterapia"},
+    {"@type":"MedicalTherapy","name":"Fisioterapia a domicilio"}
+  ]
+}
+</script>
 
 <script>
-  // ======================= PESTAÑAS (TABS) =======================
-  const tabBtns = document.querySelectorAll('.tab-btn');
-  const panes = document.querySelectorAll('.tab-pane');
-  
-  function activateTab(tabId) {
-    panes.forEach(pane => {
-      pane.classList.remove('active-pane');
-      if(pane.id === tabId) {
-        pane.classList.add('active-pane');
-      }
-    });
-    tabBtns.forEach(btn => {
-      btn.classList.remove('active');
-      if(btn.getAttribute('data-tab') === tabId) {
-        btn.classList.add('active');
-      }
-    });
-  }
-  
-  tabBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      const tabId = btn.getAttribute('data-tab');
-      if(tabId === 'mision-vision') activateTab('mision-vision');
-      else if(tabId === 'servicios') activateTab('servicios');
-      else if(tabId === 'ubicaciones') activateTab('ubicaciones');
-      else if(tabId === 'galeria') activateTab('galeria');
+(() => {
+  'use strict';
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- Año del footer ---------- */
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ---------- Cabecera: borde sólo cuando hay contenido debajo ---------- */
+  const header = document.getElementById('header');
+  const sentinel = document.createElement('div');
+  sentinel.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:1px;pointer-events:none';
+  document.body.prepend(sentinel);
+  new IntersectionObserver(
+    ([e]) => header.classList.toggle('is-stuck', !e.isIntersecting)
+  ).observe(sentinel);
+
+  /* ---------- Acordeón: el cierre se anima igual que la apertura ---------- */
+  document.querySelectorAll('.qa').forEach(qa => {
+    qa.querySelector('summary').addEventListener('click', e => {
+      if (!qa.open || reduce) return;   // abrir: lo hace el navegador
+      e.preventDefault();               // cerrar: primero animamos
+      qa.classList.add('is-closing');
+      setTimeout(() => { qa.open = false; qa.classList.remove('is-closing'); }, 240);
     });
   });
 
-  // ======================= GALERÍA DE FOTOS (fácil mantenimiento) =======================
-  // Array de objetos con URLs de imágenes y descripción (puedes reemplazar fácilmente)
-  // Para mantenerlo simple y visualmente atractivo usamos imágenes de Unsplash de temática salud/fisioterapia (placeholder libres)
-  // Todas las imágenes son de alta calidad gratuitas (demo), pero puedes cambiarlas sin afectar estructura.
-  const galleryImages = [
-    { url: 'https://images.pexels.com/photos/40568/medical-appointment-doctor-healthcare-40568.jpeg?auto=compress&cs=tinysrgb&w=600', alt: 'Consulta de fisioterapia' },
-    { url: 'https://images.pexels.com/photos/5327655/pexels-photo-5327655.jpeg?auto=compress&cs=tinysrgb&w=600', alt: 'Terapia manual con profesionales' },
-    { url: 'https://images.pexels.com/photos/4386464/pexels-photo-4386464.jpeg?auto=compress&cs=tinysrgb&w=600', alt: 'Gimnasio terapéutico' },
-    { url: 'https://images.pexels.com/photos/3836287/pexels-photo-3836287.jpeg?auto=compress&cs=tinysrgb&w=600', alt: 'Clínica moderna equipada' },
-    { url: 'https://images.pexels.com/photos/6646915/pexels-photo-6646915.jpeg?auto=compress&cs=tinysrgb&w=600', alt: 'Sesión de rehabilitación con ultrasonido' },
-    { url: 'https://images.pexels.com/photos/4526159/pexels-photo-4526159.jpeg?auto=compress&cs=tinysrgb&w=600', alt: 'Masaje descontracturante' },
-    { url: 'https://images.pexels.com/photos/7089018/pexels-photo-7089018.jpeg?auto=compress&cs=tinysrgb&w=600', alt: 'Ejercicios de equilibrio' },
-    { url: 'https://images.pexels.com/photos/3845549/pexels-photo-3845549.jpeg?auto=compress&cs=tinysrgb&w=600', alt: 'Zona de recepción acogedora' }
-  ];
-  
-  const galleryContainer = document.getElementById('galleryContainer');
-  function renderGallery() {
-    if (!galleryContainer) return;
-    galleryContainer.innerHTML = '';
-    galleryImages.forEach(img => {
-      const div = document.createElement('div');
-      div.className = 'gallery-item';
-      const imageElem = document.createElement('img');
-      imageElem.src = img.url;
-      imageElem.alt = img.alt;
-      imageElem.loading = 'lazy';
-      div.appendChild(imageElem);
-      // evento para abrir modal
-      div.addEventListener('click', () => {
-        openModal(img.url, img.alt);
-      });
-      galleryContainer.appendChild(div);
+  /* ---------- Menú móvil ---------- */
+  const nav = document.getElementById('nav');
+  const menuBtn = document.getElementById('menuBtn');
+  menuBtn.addEventListener('click', () => {
+    const open = nav.classList.toggle('is-open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+  });
+  nav.addEventListener('click', e => {
+    if (e.target.tagName === 'A') {
+      nav.classList.remove('is-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  /* ---------- Indicador de navegación + sección activa ---------- */
+  const links = [...nav.querySelectorAll('a')];
+  const ind = document.getElementById('navInd');
+  const IND_BASE = 100; // ancho base del indicador; se escala con transform
+
+  function moveIndicator(link) {
+    if (!link || window.innerWidth <= 900) { ind.style.opacity = '0'; return; }
+    ind.style.opacity = '1';
+    ind.style.transform =
+      `translateX(${link.offsetLeft}px) scaleX(${link.offsetWidth / IND_BASE})`;
+  }
+
+  const sections = links
+    .map(a => document.querySelector(a.getAttribute('href')))
+    .filter(Boolean);
+
+  const spy = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const link = links.find(a => a.getAttribute('href') === '#' + entry.target.id);
+      links.forEach(a => a.classList.toggle('is-current', a === link));
+      moveIndicator(link);
     });
-  }
-  
-  // Modal logic
-  const modal = document.getElementById('imageModal');
-  const modalImg = document.getElementById('modalImage');
-  const closeModalBtn = document.querySelector('.close-modal');
-  
-  function openModal(imageUrl, altText) {
-    modal.style.display = 'flex';
-    modalImg.src = imageUrl;
-    modalImg.alt = altText;
-    document.body.style.overflow = 'hidden';
-  }
-  
-  function closeModal() {
-    modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
-  }
-  
-  closeModalBtn.addEventListener('click', closeModal);
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeModal();
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  sections.forEach(s => spy.observe(s));
+
+  window.addEventListener('resize', () =>
+    moveIndicator(nav.querySelector('.is-current')), { passive: true });
+
+  /* ---------- Síntoma → tratamiento correspondiente ---------- */
+  document.querySelectorAll('.chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const card = document.getElementById(chip.dataset.goto);
+      if (!card) return;
+      card.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+      document.querySelectorAll('.card.is-flagged').forEach(c => c.classList.remove('is-flagged'));
+      card.classList.add('is-flagged');
+      card.focus({ preventScroll: true });
+      setTimeout(() => card.classList.remove('is-flagged'), 2200);
+    });
   });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.style.display === 'flex') closeModal();
+
+  /* ---------- Aparición al hacer scroll: una sola vez, sólo en rejillas ---------- */
+  if (!reduce) {
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('is-in');
+        obs.unobserve(e.target);
+      });
+    }, { rootMargin: '0px 0px -12% 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-in'));
+  }
+
+  /* ---------- Contador de grados del goniómetro ---------- */
+  const deg = document.getElementById('degrees');
+  if (!reduce && deg) {
+    const target = 142, start = performance.now(), dur = 1400, delay = 250;
+    deg.textContent = '0';
+    const tick = now => {
+      const t = Math.min(Math.max(now - start - delay, 0) / dur, 1);
+      deg.textContent = Math.round(target * (1 - Math.pow(1 - t, 3)));
+      if (t < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+
+  /* ---------- Galería ----------
+     MANTENIMIENTO: para cambiar las fotos, edita sólo este arreglo. */
+  const photos = [
+    { url:'https://images.pexels.com/photos/40568/medical-appointment-doctor-healthcare-40568.jpeg?auto=compress&cs=tinysrgb&w=900', alt:'Consulta de fisioterapia' },
+    { url:'https://images.pexels.com/photos/5327655/pexels-photo-5327655.jpeg?auto=compress&cs=tinysrgb&w=900', alt:'Sesión de terapia manual' },
+    { url:'https://images.pexels.com/photos/4386464/pexels-photo-4386464.jpeg?auto=compress&cs=tinysrgb&w=900', alt:'Gimnasio terapéutico' },
+    { url:'https://images.pexels.com/photos/3836287/pexels-photo-3836287.jpeg?auto=compress&cs=tinysrgb&w=900', alt:'Sala de tratamiento equipada' },
+    { url:'https://images.pexels.com/photos/6646915/pexels-photo-6646915.jpeg?auto=compress&cs=tinysrgb&w=900', alt:'Rehabilitación con ultrasonido' },
+    { url:'https://images.pexels.com/photos/4526159/pexels-photo-4526159.jpeg?auto=compress&cs=tinysrgb&w=900', alt:'Masaje descontracturante' },
+    { url:'https://images.pexels.com/photos/7089018/pexels-photo-7089018.jpeg?auto=compress&cs=tinysrgb&w=900', alt:'Ejercicios de equilibrio' },
+    { url:'https://images.pexels.com/photos/3845549/pexels-photo-3845549.jpeg?auto=compress&cs=tinysrgb&w=900', alt:'Recepción de la consulta' }
+  ];
+
+  const gallery = document.getElementById('gallery');
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  const lbCap = document.getElementById('lbCap');
+
+  photos.forEach(p => {
+    const b = document.createElement('button');
+    b.className = 'shot';
+    b.type = 'button';
+    b.setAttribute('aria-label', 'Ampliar: ' + p.alt);
+    const img = new Image();
+    img.src = p.url; img.alt = p.alt; img.loading = 'lazy'; img.decoding = 'async';
+    b.appendChild(img);
+    b.addEventListener('click', () => {
+      lbImg.src = p.url; lbImg.alt = p.alt; lbCap.textContent = p.alt;
+      lb.showModal();
+    });
+    gallery.appendChild(b);
   });
-  
-  // Inicializar galería al cargar y también actualizar si se necesita después
-  renderGallery();
-  
-  // Además para mantener efecto sobre pestañas: cuando se seleccione galería recargar imágenes por si acaso (ya estan cargadas)
-  // opcional: scroll suave cuando se cambie pestaña y un pequeño aviso para cambiar fotos fácil.
-  console.log('Página lista - fácil mantenimiento: editar array galleryImages o reemplazar imágenes en ./assets (sustituir urls)');
-  
-  // Si quieres que al hacer clic en las pestañas, la galería esté lista, perfecto.
-  // Fácil mantenimiento: para actualizar las imágenes solo edita el array "galleryImages" en el código.
-  // Para cambiar logos, reemplazar la imagen en hero-img img src.
+
+  document.getElementById('lbClose').addEventListener('click', () => lb.close());
+  lb.addEventListener('click', e => { if (e.target === lb) lb.close(); });
+})();
 </script>
 
 </body>
