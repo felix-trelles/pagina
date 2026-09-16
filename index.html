@@ -213,13 +213,6 @@ p{ margin:0; }
   border-radius:999px 999px 20px 20px;
   background:var(--moss-tint);
 }
-.rom-readout{
-  position:absolute; z-index:2; right:-5%; bottom:7%;
-  background:var(--surface); border:1px solid var(--line);
-  border-radius:var(--r-card); padding:.7rem 1rem; box-shadow:0 18px 30px -22px rgba(19,37,30,.5);
-}
-.rom-readout b{ font-family:'Fraunces',serif; font-size:1.6rem; font-weight:600; display:block; line-height:1; }
-.rom-readout span{ font-size:.75rem; color:var(--ink-2); }
 
 /* ============================================================
    5. SECCIONES
@@ -323,6 +316,29 @@ section{ padding:clamp(3.5rem,7vw,6rem) 0; }
 .story-side dt{ font-size:.8rem; color:var(--moss); font-weight:600; }
 .story-side dd{ margin:0; font-size:.95rem; }
 
+/* --- Agenda de reservas --- */
+.agenda{ display:grid; grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);
+         gap:clamp(1.5rem,4vw,3.5rem); align-items:start; }
+.agenda-how{ list-style:none; margin:0; padding:0; display:grid; gap:1.4rem; counter-reset:a; }
+.agenda-how li{ counter-increment:a; position:relative; padding-left:2.9rem; }
+.agenda-how li::before{
+  content:counter(a); position:absolute; left:0; top:.05rem;
+  width:2rem; height:2rem; display:grid; place-items:center; border-radius:50%;
+  background:var(--moss); color:#fff; font-family:'Fraunces',serif;
+  font-size:.85rem; font-weight:600;
+}
+.agenda-how b{ display:block; margin-bottom:.15rem; }
+.agenda-how span{ color:var(--ink-2); font-size:.95rem; }
+.agenda-frame{
+  border:1px solid var(--line); border-radius:var(--r-card);
+  overflow:hidden; background:var(--surface); min-height:640px;
+}
+.agenda-frame iframe{ display:block; width:100%; height:640px; border:0; }
+.agenda-fallback{
+  min-height:640px; display:grid; gap:.9rem; place-content:center;
+  text-align:center; padding:clamp(1.5rem,4vw,2.5rem);
+}
+
 /* --- Ubicación --- */
 .place{ display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:1.25rem; }
 .place-map{
@@ -343,10 +359,10 @@ section{ padding:clamp(3.5rem,7vw,6rem) 0; }
 }
 
 /* --- Galería --- */
-.gallery{ display:grid; gap:1rem; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); }
+.gallery{ display:grid; gap:1rem; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); }
 .shot{
   padding:0; border:0; background:var(--moss-tint); cursor:zoom-in;
-  border-radius:var(--r-card); overflow:hidden; aspect-ratio:4/3;
+  border-radius:var(--r-card); overflow:hidden; aspect-ratio:3/4;
 }
 .shot img{ width:100%; height:100%; object-fit:cover; transition:transform 280ms var(--ease-out); }
 @media (hover:hover) and (pointer:fine){ .shot:hover img{ transform:scale(1.04); } }
@@ -474,8 +490,9 @@ section{ padding:clamp(3.5rem,7vw,6rem) 0; }
    ============================================================ */
 @media (max-width:900px){
   .hero-grid{ grid-template-columns:1fr; }
+  .agenda{ grid-template-columns:1fr; }
+  .agenda-frame, .agenda-frame iframe, .agenda-fallback{ min-height:700px; height:700px; }
   .figure{ order:-1; max-width:300px; }
-  .rom-readout{ right:0; }
   .nav{
     position:absolute; top:72px; left:var(--gutter); right:var(--gutter);
     flex-direction:column; gap:0; background:var(--surface);
@@ -563,11 +580,11 @@ section{ padding:clamp(3.5rem,7vw,6rem) 0; }
       <a href="#equipos">Tecnología</a>
       <a href="#proceso">Cómo funciona</a>
       <a href="#sobre">El consultorio</a>
-      <a href="#galeria">Galería</a>
+      <a href="#agenda">Agenda</a>
       <a href="#ubicacion">Ubicación</a>
     </nav>
 
-    <a class="btn btn-primary header-cta" href="#contacto">Reservar cita</a>
+    <a class="btn btn-primary header-cta" href="#agenda">Reservar cita</a>
   </div>
 </header>
 
@@ -588,8 +605,8 @@ section{ padding:clamp(3.5rem,7vw,6rem) 0; }
         electroterapia en el mismo consultorio.
       </p>
       <div class="hero-actions rise rise-3">
-        <a class="btn btn-primary" href="https://wa.me/51979000480?text=Hola%2C%20quisiera%20reservar%20una%20cita%20de%20fisioterapia" target="_blank" rel="noopener">
-          Reservar por WhatsApp
+        <a class="btn btn-primary" href="#agenda">
+          Reservar cita
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg>
         </a>
         <a class="btn btn-ghost" href="#equipos">Ver la tecnología</a>
@@ -608,7 +625,7 @@ section{ padding:clamp(3.5rem,7vw,6rem) 0; }
         <path class="rom-arc"   d="M 8.3 186.7 A 154 154 0 1 1 311.7 186.7"/>
       </svg>
       <img src="doctora.jpg" alt="Especialista de PhyReh en el consultorio, junto a sus títulos y certificaciones"
-           width="200" height="1342" fetchpriority="high">
+           width="800" height="1342" fetchpriority="high">
     </div>
   </div>
 </section>
@@ -947,6 +964,11 @@ section{ padding:clamp(3.5rem,7vw,6rem) 0; }
         <div class="qa-body"><div><p>Lo más común es entre 4 y 8. Al terminar la evaluación recibes un número estimado; si a la tercera sesión no hay cambios medibles, se replantea el tratamiento o se te deriva.</p></div></div>
       </details>
       <details class="qa">
+        <summary>¿Puedo reservar desde la web sin llamar?
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chev"/></svg></summary>
+        <div class="qa-body"><div><p>Sí. En la agenda de esta página aparecen solo las horas realmente libres; eliges una, dejas tus datos y recibes la confirmación por correo. Si prefieres hablar con alguien o necesitas mover tu cita, escríbenos al WhatsApp 979 000 480.</p></div></div>
+      </details>
+      <details class="qa">
         <summary>¿Atienden a domicilio?
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chev"/></svg></summary>
         <div class="qa-body"><div><p>Sí, dentro de la ciudad, con equipo portátil. Es la opción habitual para postoperatorios, adultos mayores y pacientes que todavía no pueden trasladarse. Se coordina por WhatsApp según disponibilidad.</p></div></div>
@@ -956,6 +978,43 @@ section{ padding:clamp(3.5rem,7vw,6rem) 0; }
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chev"/></svg></summary>
         <div class="qa-body"><div><p>Ropa cómoda que te permita moverte y cualquier examen o informe que tengas a la mano: radiografías, resonancias, ecografías o el informe de tu operación.</p></div></div>
       </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ AGENDA ============================ -->
+<section id="agenda">
+  <div class="shell">
+    <div class="sec-head">
+      <span class="kicker">Reserva en línea</span>
+      <h2>Elige tu horario y queda agendado</h2>
+      <p>La agenda muestra en tiempo real las horas libres del consultorio. Al reservar, la cita se registra automáticamente y recibes la confirmación en tu correo.</p>
+    </div>
+
+    <div class="agenda">
+      <ol class="agenda-how">
+        <li><b>Elige día y hora</b><span>Solo aparecen los espacios realmente disponibles. Si una hora ya está tomada, no se muestra.</span></li>
+        <li><b>Deja tus datos</b><span>Nombre, correo y teléfono. En el campo de notas cuéntanos qué te duele y desde cuándo.</span></li>
+        <li><b>Recibe la confirmación</b><span>Te llega al correo con la dirección y la referencia. Si necesitas cambiarla, escríbenos por WhatsApp.</span></li>
+        <li><b>Ven 10 minutos antes</b><span>Trae ropa cómoda y los exámenes que tengas. La primera cita dura 45 minutos e incluye la evaluación.</span></li>
+      </ol>
+
+      <!-- EDITAR: pega tu enlace de Google Calendar en AGENDA_URL, al inicio del script
+           que está al final de este archivo. Mientras esté vacío, aquí se muestra la
+           reserva por WhatsApp, así la página nunca queda rota. -->
+      <div class="agenda-frame" id="agendaSlot">
+        <div class="agenda-fallback" id="agendaFallback">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="width:40px;height:40px;color:var(--moss);margin-inline:auto"><use href="#i-clock"/></svg>
+          <h3>Reserva por WhatsApp</h3>
+          <p class="prose" style="margin-inline:auto">Escríbenos con el día y la hora que te acomoden y confirmamos tu cita al momento.</p>
+          <div>
+            <a class="btn btn-primary" href="https://wa.me/51979000480?text=Hola%2C%20quisiera%20reservar%20una%20cita%20de%20fisioterapia" target="_blank" rel="noopener">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg>
+              Escribir al 979 000 480
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1166,30 +1225,31 @@ section{ padding:clamp(3.5rem,7vw,6rem) 0; }
     document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-in'));
   }
 
-  /* ---------- Contador de grados del goniómetro ---------- */
-  const deg = document.getElementById('degrees');
-  if (!reduce && deg) {
-    const target = 142, start = performance.now(), dur = 1400, delay = 250;
-    deg.textContent = '0';
-    const tick = now => {
-      const t = Math.min(Math.max(now - start - delay, 0) / dur, 1);
-      deg.textContent = Math.round(target * (1 - Math.pow(1 - t, 3)));
-      if (t < 1) requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
+  /* ---------- Agenda de Google Calendar ----------
+     Pega entre las comillas el enlace de tu página de reservas. Se obtiene en
+     Google Calendar → Crear → Agenda de citas → Compartir → Insertar.
+     Debe terminar en ?gv=true y empezar por https://calendar.google.com/
+     Si se deja vacío, la sección muestra la reserva por WhatsApp. */
+  const AGENDA_URL = '';
+
+  if (/^https:\/\/calendar\.google\.com\/calendar\/appointments\//.test(AGENDA_URL)) {
+    const slot = document.getElementById('agendaSlot');
+    const frame = document.createElement('iframe');
+    frame.src = AGENDA_URL;
+    frame.title = 'Agenda de reservas de PhyReh';
+    frame.loading = 'lazy';
+    slot.replaceChildren(frame);
   }
 
   /* ---------- Galería ----------
      MANTENIMIENTO: para cambiar las fotos, edita sólo este arreglo. */
   const photos = [
-    { url:'https://images.pexels.com/photos/40568/medical-appointment-doctor-healthcare-40568.jpeg?auto=compress&cs=tinysrgb&w=900', alt:'Consulta de fisioterapia' },
-    { url:'https://images.pexels.com/photos/5327655/pexels-photo-5327655.jpeg?auto=compress&cs=tinysrgb&w=900', alt:'Sesión de terapia manual' },
-    { url:'https://images.pexels.com/photos/4386464/pexels-photo-4386464.jpeg?auto=compress&cs=tinysrgb&w=900', alt:'Gimnasio terapéutico' },
-    { url:'https://images.pexels.com/photos/3836287/pexels-photo-3836287.jpeg?auto=compress&cs=tinysrgb&w=900', alt:'Sala de tratamiento equipada' },
-    { url:'https://images.pexels.com/photos/6646915/pexels-photo-6646915.jpeg?auto=compress&cs=tinysrgb&w=900', alt:'Rehabilitación con ultrasonido' },
-    { url:'https://images.pexels.com/photos/4526159/pexels-photo-4526159.jpeg?auto=compress&cs=tinysrgb&w=900', alt:'Masaje descontracturante' },
-    { url:'https://images.pexels.com/photos/7089018/pexels-photo-7089018.jpeg?auto=compress&cs=tinysrgb&w=900', alt:'Ejercicios de equilibrio' },
-    { url:'https://images.pexels.com/photos/3845549/pexels-photo-3845549.jpeg?auto=compress&cs=tinysrgb&w=900', alt:'Recepción de la consulta' }
+    { url:'g-terapia-manual.jpg',   alt:'Movilización manual de rodilla sobre la camilla' },
+    { url:'g-electroterapia.jpg',   alt:'Sesión de electroterapia TENS en antebrazo y mano' },
+    { url:'g-hombro-aros.jpg',      alt:'Ejercicio de movilidad de hombro con aros, guiado por la especialista' },
+    { url:'g-compresa.jpg',         alt:'Compresa térmica aplicada sobre la rodilla' },
+    { url:'g-balon-tobillera.jpg',  alt:'Trabajo de fuerza con tobillera lastrada sobre balón terapéutico' },
+    { url:'g-motricidad.jpg',       alt:'Reeducación de motricidad fina con aros y bloques' }
   ];
 
   const gallery = document.getElementById('gallery');
