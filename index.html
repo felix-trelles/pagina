@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PhyReh | Centro de Fisioterapia y Rehabilitación en Piura</title>
-<meta name="description" content="PhyReh, centro de fisioterapia y rehabilitación en Piura con 10 años de experiencia. Ondas de choque, ultrasonido, magnetoterapia, electroterapia, pistola de percusión y terapia manual. 1ero de Junio Mz C Lote 11, altura del restaurante El Verídico.">
+<title>PhyReh | Centro de Fisioterapia y Rehabilitación en Paita, Piura</title>
+<meta name="description" content="PhyReh, centro de fisioterapia y rehabilitación en Paita, Piura, con 10 años de experiencia. Ondas de choque, ultrasonido, magnetoterapia, electroterapia, pistola de percusión y terapia manual. 1ero de Junio Mz C Lote 11, Paita, a la altura del restaurante El Verídico.">
 <meta name="theme-color" content="#1E5442">
 
 <!-- EDITAR: cuando tengas dominio, pon aquí la URL completa (https://tudominio.com/logo.png) -->
@@ -359,7 +359,7 @@ section{ padding:clamp(3.5rem,7vw,6rem) 0; }
 }
 
 /* --- Galería --- */
-.gallery{ display:grid; gap:1rem; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); }
+.gallery{ display:grid; gap:1rem; grid-template-columns:repeat(3,minmax(0,1fr)); }
 .shot{
   padding:0; border:0; background:var(--moss-tint); cursor:zoom-in;
   border-radius:var(--r-card); overflow:hidden; aspect-ratio:3/4;
@@ -506,6 +506,9 @@ section{ padding:clamp(3.5rem,7vw,6rem) 0; }
   .nav-ind{ display:none; }
   .menu-btn{ display:block; }
   .header-cta{ display:none; }
+}
+@media (max-width:760px){
+  .gallery{ grid-template-columns:repeat(2,minmax(0,1fr)); }
 }
 @media (max-width:520px){
   .hero-stats{ gap:1.1rem 1.6rem; }
@@ -824,7 +827,7 @@ section{ padding:clamp(3.5rem,7vw,6rem) 0; }
         <h3>La dirección</h3>
         <ul class="sede-meta">
           <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pin"/></svg>
-              1ero de Junio, Mz. C Lote 11<br>Piura</li>
+              1ero de Junio, Mz. C Lote 11<br>Paita, Piura</li>
           <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-map"/></svg>
               <a href="https://maps.app.goo.gl/e4m3xeoF2xDkKFgm9" target="_blank" rel="noopener">Abrir en Google Maps</a></li>
         </ul>
@@ -842,16 +845,16 @@ section{ padding:clamp(3.5rem,7vw,6rem) 0; }
           <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"/></svg>
               <a href="tel:+51979000480">Llamar al 979 000 480</a></li>
         </ul>
-        <p class="sede-note">Atención con cita previa. También vamos a domicilio dentro de la ciudad.</p>
+        <p class="sede-note">Atención con cita previa. También vamos a domicilio en Paita y alrededores.</p>
       </article>
 
-      <!-- EDITAR: para que el pin quede exacto, entra a tu ficha de Google Maps,
-           pulsa Compartir → Insertar un mapa y pega aquí ese <iframe>. -->
+      <!-- Coordenadas tomadas del pin de Google Maps del consultorio -->
       <div class="place-map">
         <iframe
-          src="https://www.google.com/maps?q=1ero%20de%20Junio%20Mz%20C%20Lote%2011%20Piura&output=embed"
-          title="Mapa de la ubicación del consultorio"
-          loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          src="https://www.google.com/maps?q=-5.094968,-81.0890948&amp;hl=es&amp;z=18&amp;output=embed"
+          title="Mapa de la ubicación del consultorio en Paita"
+          loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen></iframe>
       </div>
     </div>
   </div>
@@ -876,7 +879,7 @@ section{ padding:clamp(3.5rem,7vw,6rem) 0; }
       <div class="story-body">
         <p>El paciente entra encogido, con la mano puesta sobre el hombro, y repite la frase que aquí se escucha casi todos los días: me duele hace meses y ya probé de todo. Lo primero que pasa entonces no es un aparato encendido ni una camilla. Es una pregunta: ¿desde cuándo, y qué estabas haciendo cuando empezó?</p>
 
-        <p>Han pasado diez años desde que PhyReh empezó a atender a la altura del restaurante El Verídico. En ese tiempo por la camilla han pasado albañiles con la espalda vencida, choferes con el cuello endurecido de tanto volante, futbolistas de cancha de barrio con la rodilla hinchada y señoras que volvieron a colgar la ropa sin quejarse. La historia clínica cambia en cada caso. El método, no.</p>
+        <p>Han pasado diez años desde que PhyReh empezó a atender a la altura del restaurante El Verídico. En ese tiempo por la camilla han pasado estibadores con la espalda vencida de tanto cargar, pescadores con el hombro trabado, mototaxistas con el cuello duro, futbolistas de cancha de barrio con la rodilla hinchada y señoras que volvieron a colgar la ropa sin quejarse. La historia clínica cambia en cada caso. El método, no.</p>
 
         <p>El método empieza midiendo. Cuánto sube el brazo, cuánto gira el cuello, en qué punto exacto se corta el movimiento y dónde aparece la molestia. Solo después de eso se decide la herramienta, porque tratar sin medir es apostar.</p>
 
@@ -971,7 +974,7 @@ section{ padding:clamp(3.5rem,7vw,6rem) 0; }
       <details class="qa">
         <summary>¿Atienden a domicilio?
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chev"/></svg></summary>
-        <div class="qa-body"><div><p>Sí, dentro de la ciudad, con equipo portátil. Es la opción habitual para postoperatorios, adultos mayores y pacientes que todavía no pueden trasladarse. Se coordina por WhatsApp según disponibilidad.</p></div></div>
+        <div class="qa-body"><div><p>Sí, en Paita y alrededores, con equipo portátil. Es la opción habitual para postoperatorios, adultos mayores y pacientes que todavía no pueden trasladarse. Se coordina por WhatsApp según disponibilidad.</p></div></div>
       </details>
       <details class="qa">
         <summary>¿Qué llevo a la primera cita?
@@ -1059,6 +1062,7 @@ section{ padding:clamp(3.5rem,7vw,6rem) 0; }
         <h4>Ubicación</h4>
         <ul>
           <li>1ero de Junio, Mz. C Lote 11</li>
+          <li>Paita, Piura</li>
           <li>Altura del restaurante El Verídico</li>
           <li><a href="https://maps.app.goo.gl/e4m3xeoF2xDkKFgm9" target="_blank" rel="noopener">Abrir en Google Maps</a></li>
           <li>También atención a domicilio</li>
@@ -1111,10 +1115,13 @@ section{ padding:clamp(3.5rem,7vw,6rem) 0; }
   "description":"Centro de fisioterapia y rehabilitación con 10 años de experiencia. Ondas de choque, ultrasonido, magnetoterapia, electroterapia, pistola de percusión y terapia manual.",
   "telephone":"+51979000480",
   "hasMap":"https://maps.app.goo.gl/e4m3xeoF2xDkKFgm9",
+  "geo":{"@type":"GeoCoordinates","latitude":-5.094968,"longitude":-81.0890948},
+  "areaServed":["Paita","Piura"],
   "address":{
     "@type":"PostalAddress",
     "streetAddress":"1ero de Junio Mz. C Lote 11",
-    "addressLocality":"Piura",
+    "addressLocality":"Paita",
+    "addressRegion":"Piura",
     "addressCountry":"PE"
   },
   "availableService":[
