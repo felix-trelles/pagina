@@ -335,9 +335,16 @@ section{ padding:clamp(3.5rem,7vw,6rem) 0; }
 }
 .agenda-frame iframe{ display:block; width:100%; height:640px; border:0; }
 .agenda-fallback{
-  min-height:640px; display:grid; gap:.9rem; place-content:center;
+  min-height:640px; display:grid; gap:.9rem; place-content:center; justify-items:center;
   text-align:center; padding:clamp(1.5rem,4vw,2.5rem);
 }
+.agenda-fallback .prose{ max-width:42ch; }
+.agenda-mark{ width:42px; height:42px; color:var(--moss); }
+.agenda-meta{
+  font-size:.85rem; font-weight:600; color:var(--moss);
+  background:var(--moss-tint); padding:.45rem 1rem; border-radius:var(--r-chip);
+}
+.agenda-actions{ display:flex; flex-wrap:wrap; gap:.7rem; justify-content:center; margin-top:.6rem; }
 
 /* --- Ubicación --- */
 .place{ display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:1.25rem; }
@@ -1002,9 +1009,9 @@ section{ padding:clamp(3.5rem,7vw,6rem) 0; }
         <li><b>Ven 10 minutos antes</b><span>Trae ropa cómoda y los exámenes que tengas. La primera cita dura 45 minutos e incluye la evaluación.</span></li>
       </ol>
 
-      <!-- EDITAR: pega tu enlace de Google Calendar en AGENDA_URL, al inicio del script
-           que está al final de este archivo. Mientras esté vacío, aquí se muestra la
-           reserva por WhatsApp, así la página nunca queda rota. -->
+      <!-- Este bloque lo reemplaza el script del final del archivo según lo que
+           haya en AGENDA_LINK y AGENDA_URL. Lo que se ve aquí es el último
+           recurso: si ambos están vacíos, queda la reserva por WhatsApp. -->
       <div class="agenda-frame" id="agendaSlot">
         <div class="agenda-fallback" id="agendaFallback">
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="width:40px;height:40px;color:var(--moss);margin-inline:auto"><use href="#i-clock"/></svg>
@@ -1124,6 +1131,15 @@ section{ padding:clamp(3.5rem,7vw,6rem) 0; }
     "addressRegion":"Piura",
     "addressCountry":"PE"
   },
+  "potentialAction":{
+    "@type":"ReserveAction",
+    "target":{
+      "@type":"EntryPoint",
+      "urlTemplate":"https://calendar.app.google/cdv8Pu3BPZ9f633G9",
+      "actionPlatform":["http://schema.org/DesktopWebPlatform","http://schema.org/MobileWebPlatform"]
+    },
+    "result":{"@type":"Reservation","name":"Cita de fisioterapia"}
+  },
   "availableService":[
     {"@type":"MedicalTherapy","name":"Terapia manual ortopédica"},
     {"@type":"MedicalTherapy","name":"Ondas de choque para tendinitis"},
@@ -1237,15 +1253,44 @@ section{ padding:clamp(3.5rem,7vw,6rem) 0; }
      Google Calendar → Crear → Agenda de citas → Compartir → Insertar.
      Debe terminar en ?gv=true y empezar por https://calendar.google.com/
      Si se deja vacío, la sección muestra la reserva por WhatsApp. */
-  const AGENDA_URL = 'https://calendar.app.google/cdv8Pu3BPZ9f633G9';
+  /* Enlace corto de la página de reservas. Siempre funciona: abre la agenda
+     en una pestaña nueva. Es el que Google muestra en Compartir → Copiar enlace. */
+  const AGENDA_LINK = 'https://calendar.app.google/cdv8Pu3BPZ9f633G9';
 
-  if (/^https:\/\/calendar\.google\.com\/calendar\/appointments\//.test(AGENDA_URL)) {
-    const slot = document.getElementById('agendaSlot');
+  /* Enlace largo para incrustar la agenda DENTRO de la página, sin que el
+     paciente tenga que salir. Se obtiene en Google Calendar → tu agenda de citas
+     → Compartir → Insertar, y termina en ?gv=true. Cuando lo pegues aquí,
+     reemplaza automáticamente al panel de arriba. */
+  const AGENDA_URL = '';
+
+  const slot = document.getElementById('agendaSlot');
+
+  if (/^https:\/\/calendar\.google\.com\/calendar\/appointments\/.+gv=true/.test(AGENDA_URL)) {
     const frame = document.createElement('iframe');
     frame.src = AGENDA_URL;
     frame.title = 'Agenda de reservas de PhyReh';
     frame.loading = 'lazy';
     slot.replaceChildren(frame);
+
+  } else if (/^https:\/\/calendar\.(app\.google|google\.com)\//.test(AGENDA_LINK)) {
+    const panel = document.createElement('div');
+    panel.className = 'agenda-fallback';
+    panel.innerHTML = `
+      <svg class="icon agenda-mark" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-clock"/></svg>
+      <h3>Agenda abierta en línea</h3>
+      <p class="prose">Abre la agenda, elige el día y la hora que te queden libres y confirma.
+         La cita queda registrada al instante y te llega la confirmación a tu correo.</p>
+      <p class="agenda-meta">Primera cita · 45 minutos · incluye evaluación completa</p>
+      <div class="agenda-actions">
+        <a class="btn btn-primary" id="agendaCta" target="_blank" rel="noopener">
+          Ver horarios disponibles
+        </a>
+        <a class="btn btn-ghost" href="https://wa.me/51979000480?text=Hola%2C%20quisiera%20reservar%20una%20cita%20de%20fisioterapia" target="_blank" rel="noopener">
+          Prefiero WhatsApp
+        </a>
+      </div>`;
+    panel.querySelector('#agendaCta').href = AGENDA_LINK;
+    slot.replaceChildren(panel);
   }
 
   /* ---------- Galería ----------
